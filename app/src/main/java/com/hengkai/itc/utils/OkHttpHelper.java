@@ -16,7 +16,7 @@ import okhttp3.RequestBody;
  * Created by Harry on 2018/8/13.
  * 对OkHttp的封装
  */
-public class OkHttpUtils {
+public class OkHttpHelper {
 
     /**
      * @param url 网络访问路径(不包含BaseUrl)
