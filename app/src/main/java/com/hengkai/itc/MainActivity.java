@@ -1,17 +1,22 @@
 package com.hengkai.itc;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.hengkai.itc.base.BaseActivity;
+import com.hengkai.itc.base.presenter.BasePresenter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int setupView() {
+        return 0;
+    }
 
+    @Override
+    protected void initView() {
 
+    }
 
-
+    @Override
+    protected BasePresenter bindPresenter() {
+        return null;
     }
 }

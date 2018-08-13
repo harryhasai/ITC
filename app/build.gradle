@@ -19,10 +19,41 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:support-v4:28.0.0-rc01'
+    implementation 'com.android.support:design:28.0.0-rc01'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-rc01'
+    implementation 'com.android.support:cardview-v7:28.0.0-rc01'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    //RecyclerViewAdapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //AndroidUtils
+    implementation 'com.blankj:utilcode:1.19.0'
+    //修改状态栏透明度的包
+    implementation 'com.jaeger.statusbarutil:library:1.5.0'
+    //Butter Knife
+    implementation 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    //底部导航栏
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    //PictureSelector
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    //EasyPermissions
+    implementation 'pub.devrel:easypermissions:1.2.0'
+    //FileDownloader
+    implementation 'com.liulishuo.filedownloader:library:1.7.4'
+    //下拉刷新和上拉加载
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    //JSON解析
+    implementation 'com.google.code.gson:gson:2.8.2'
 }
