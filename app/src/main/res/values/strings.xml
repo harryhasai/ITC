@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ITC服务平台</string>
+    <string name="home_shortcut1">\t\t位于王城大道东侧, 信息科技城3楼, 由17栋单体商务别墅构成</string>
+    <string name="home_shortcut2">\t\t该孵化器于2015年被河南省科技厅评定为"河南省科技企业孵化器"</string>
+    <string name="home_shortcut3">\t\t包括软件与集成电器公共服务平台洛阳平台, 洛阳市数据分析公共服务平台和洛阳市服务外包服务平台"</string>
+    <string name="home_shortcut4">\t\t园区众创空间包括"思想空间"和"ITC众创控件"</string>
 </resources>

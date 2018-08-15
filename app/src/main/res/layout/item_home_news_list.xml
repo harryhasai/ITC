@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    tools:ignore="HardcodedText">
+
+    <ImageView
+        android:id="@+id/iv_news_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="image"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_news_image"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/iv_news_image"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="资讯标题资讯标题资讯标题资讯标题资讯标题"
+            android:textColor="@color/black2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="蒹葭苍苍,白露为霜, 所谓伊人,在水一方"
+            android:textColor="@color/black3"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_text_view_bg_blue"
+                android:paddingBottom="2dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="2dp"
+                android:text="园区动态"
+                android:textColor="@color/cornflowerblue"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="浏览 2568"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:text="2018-07-06"
+                android:textSize="11sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

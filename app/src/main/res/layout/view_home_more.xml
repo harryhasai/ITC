@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_look_at_more"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_black_line_horizontal"
+    android:padding="10dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/shape_text_view_vertical_line"
+        android:gravity="center_vertical"
+        android:text="最新资讯"
+        android:textColor="@color/black2"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:text="更多>>"
+        android:textColor="@color/black3"
+        android:textSize="14sp" />
+</RelativeLayout>
