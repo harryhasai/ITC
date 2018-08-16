@@ -101,11 +101,6 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
         RecyclerView recyclerView = helper.getView(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity) {
             @Override
-            public boolean canScrollHorizontally() {
-                return false;
-            }
-
-            @Override
             public boolean canScrollVertically() {
                 return false;
             }

@@ -71,9 +71,9 @@ public class MainActivity extends BaseActivity {
 //        ShapeBadgeItem shapeBadgeItem = new ShapeBadgeItem()
 
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_bottom_navigation1, "首页").setInActiveColor(R.color.black1).setActiveColorResource(R.color.dodgerblue))
-                .addItem(new BottomNavigationItem(R.drawable.ic_bottom_navigation2, "资讯").setInActiveColor(R.color.black1).setActiveColorResource(R.color.dodgerblue))
-                .addItem(new BottomNavigationItem(R.drawable.ic_bottom_navigation3, "我的").setInActiveColor(R.color.black1).setActiveColorResource(R.color.dodgerblue))
+                .addItem(new BottomNavigationItem(R.drawable.ic_bottom_navigation1, "首页").setInActiveColor(R.color.black1).setActiveColorResource(R.color.title_bar_bg))
+                .addItem(new BottomNavigationItem(R.drawable.ic_bottom_navigation2, "资讯").setInActiveColor(R.color.black1).setActiveColorResource(R.color.title_bar_bg))
+                .addItem(new BottomNavigationItem(R.drawable.ic_bottom_navigation3, "我的").setInActiveColor(R.color.black1).setActiveColorResource(R.color.title_bar_bg))
                 .setFirstSelectedPosition(0)
                 .initialise();
 

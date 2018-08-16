@@ -25,6 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".function.login.LoginActivity" />
+        <activity android:name=".function.need_know.NeedKnowActivity" />
+        <activity android:name=".function.common_question.CommonQuestionActivity" />
+        <activity android:name=".function.about_park.AboutParkActivity" />
     </application>
 
 </manifest>

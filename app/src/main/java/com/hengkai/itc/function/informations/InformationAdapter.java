@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Created by Harry on 2018/8/15.
+ * 最外层列表的适配器
  */
 public class InformationAdapter extends BaseQuickAdapter<CommonItem, BaseViewHolder> {
 

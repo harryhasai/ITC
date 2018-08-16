@@ -1,5 +1,6 @@
 package com.hengkai.itc.function.home;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +13,10 @@ import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseFragment;
 import com.hengkai.itc.base.presenter.BasePresenter;
 import com.hengkai.itc.custom_view.refreshing.RefreshHeaderView;
+import com.hengkai.itc.function.about_park.AboutParkActivity;
+import com.hengkai.itc.function.common_question.CommonQuestionActivity;
+import com.hengkai.itc.function.login.LoginActivity;
+import com.hengkai.itc.function.need_know.NeedKnowActivity;
 import com.hengkai.itc.network.entity.HomeMultiItem;
 
 import java.util.ArrayList;
@@ -77,13 +82,13 @@ public class HomeFragment extends BaseFragment {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.ll_about://关于园区
-                        ToastUtils.showShort("关于园区");
+                        startActivity(new Intent(mActivity, AboutParkActivity.class));
                         break;
                     case R.id.ll_need_know://入驻及须知
-                        ToastUtils.showShort("入驻及须知");
+                        startActivity(new Intent(mActivity, NeedKnowActivity.class));
                         break;
                     case R.id.ll_question://入驻常见问题
-                        ToastUtils.showShort("入驻常见问题");
+                        startActivity(new Intent(mActivity, CommonQuestionActivity.class));
                         break;
                     case R.id.ll_apply://入驻申请
                         ToastUtils.showShort("入驻申请");
@@ -102,6 +107,7 @@ public class HomeFragment extends BaseFragment {
                         break;
                     case R.id.rl_look_at_more://查看更多
                         ToastUtils.showShort("查看更多");
+                        startActivity(new Intent(mActivity, LoginActivity.class));
                         break;
                 }
             }
