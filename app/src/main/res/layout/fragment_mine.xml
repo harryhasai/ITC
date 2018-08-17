@@ -1,11 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This is Mine Page"/>
+        android:background="#F1F1F1"
+        android:orientation="vertical"
+        tools:ignore="HardcodedText">
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/ic_mine_header_bg">
+
+            <ImageView
+                android:id="@+id/iv_header"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:contentDescription="header"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_header"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="薰红"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="7dp"
+                android:text="我的评论"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="40dp"
+                rtv:icon_src_normal="@drawable/ic_mine_center1"
+                rtv:icon_width="40dp" />
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="7dp"
+                android:text="回复我的"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="40dp"
+                rtv:icon_src_normal="@drawable/ic_mine_center2"
+                rtv:icon_width="40dp" />
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="7dp"
+                android:text="我的报名"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="40dp"
+                rtv:icon_src_normal="@drawable/ic_mine_center3"
+                rtv:icon_width="40dp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_data_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:padding="15dp">
+
+            <com.ruffian.library.RTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="20dp"
+                android:text="数据上报"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_src_normal="@drawable/ic_mine_bottom1"
+                rtv:icon_width="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="小箭头"
+                android:src="@drawable/ic_arrow_gray32" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_service_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:padding="15dp">
+
+            <com.ruffian.library.RTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="20dp"
+                android:text="服务评价"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_src_normal="@drawable/ic_mine_bottom5"
+                rtv:icon_width="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="小箭头"
+                android:src="@drawable/ic_arrow_gray32" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_statistical_analysis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:padding="15dp">
+
+            <com.ruffian.library.RTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="20dp"
+                android:text="统计分析"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_src_normal="@drawable/ic_mine_bottom2"
+                rtv:icon_width="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="小箭头"
+                android:src="@drawable/ic_arrow_gray32" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_modify_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:padding="15dp">
+
+            <com.ruffian.library.RTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="20dp"
+                android:text="修改密码"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_src_normal="@drawable/ic_mine_bottom3"
+                rtv:icon_width="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="小箭头"
+                android:src="@drawable/ic_arrow_gray32" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_exit_logon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:padding="15dp">
+
+            <com.ruffian.library.RTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="20dp"
+                android:text="退出登录"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_src_normal="@drawable/ic_mine_bottom4"
+                rtv:icon_width="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="小箭头"
+                android:src="@drawable/ic_arrow_gray32" />
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>

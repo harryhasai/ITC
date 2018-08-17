@@ -13,6 +13,7 @@ import com.hengkai.itc.base.presenter.BasePresenter;
 import com.hengkai.itc.function.home.HomeFragment;
 import com.hengkai.itc.function.informations.InformationFragment;
 import com.hengkai.itc.function.mine.MineFragment;
+import com.hengkai.itc.utils.ScreenUtils;
 import com.jaeger.library.StatusBarUtil;
 
 import java.util.Timer;
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         //设置沉浸式状态栏, 参数2: 颜色, 参数3: 透明度(0-255, 0表示透明, 255不透明)
 //        StatusBarUtil.setColor(this, getResources().getColor(R.color.title_bar_bg), 0);
+        ScreenUtils.fullScreen(this);
         ButterKnife.bind(this);
 
         setupBottomNavigationBar();

@@ -28,6 +28,7 @@
         <activity android:name=".function.need_know.NeedKnowActivity" />
         <activity android:name=".function.common_question.CommonQuestionActivity" />
         <activity android:name=".function.about_park.AboutParkActivity" />
+        <activity android:name=".function.my_comment.MyCommentActivity" />
     </application>
 
 </manifest>
