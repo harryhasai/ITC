@@ -1,5 +1,7 @@
 package com.hengkai.itc.function.mine;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hengkai.itc.R;
+import com.hengkai.itc.app_final.ConstantFinal;
 import com.hengkai.itc.base.BaseFragment;
 import com.hengkai.itc.base.presenter.BasePresenter;
+import com.hengkai.itc.function.data_report.DataReportActivity;
+import com.hengkai.itc.function.modify_password.ModifyPasswordActivity;
 import com.hengkai.itc.function.my_comment.MyCommentActivity;
+import com.hengkai.itc.function.my_reply.MyReplyActivity;
 import com.hengkai.itc.utils.ImageUtil;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -85,20 +91,45 @@ public class MineFragment extends BaseFragment {
                 startActivity(new Intent(mActivity, MyCommentActivity.class));
                 break;
             case R.id.tv_reply:     //回复我的
+                startActivity(new Intent(mActivity, MyReplyActivity.class));
                 break;
             case R.id.tv_sign_up:   //我的报名
                 break;
             case R.id.fl_data_report:   //数据上报
+                startActivity(new Intent(mActivity, DataReportActivity.class));
                 break;
             case R.id.fl_service_comment:   //服务评价
                 break;
             case R.id.fl_statistical_analysis://统计分析
                 break;
             case R.id.fl_modify_password://修改密码
+                // TODO: 2018/8/18 判断当前是否处于登录状态, 如果未登录则提示用户
+                mActivity.startActivityForResult(new Intent(mActivity, ModifyPasswordActivity.class), ConstantFinal.MODIFY_PASSWORD_REQUEST_CODE);
                 break;
             case R.id.fl_exit_logon:    //退出登录
+                exitLogon();
                 break;
         }
+    }
+
+    /**
+     * 退出登录弹窗
+     */
+    private void exitLogon() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setMessage("您确定要退出当前账号码?");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO: 2018/8/18 退出登录相关操作
+                dialog.dismiss();
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
 
     /**

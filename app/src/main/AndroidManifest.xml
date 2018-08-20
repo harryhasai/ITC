@@ -29,6 +29,9 @@
         <activity android:name=".function.common_question.CommonQuestionActivity" />
         <activity android:name=".function.about_park.AboutParkActivity" />
         <activity android:name=".function.my_comment.MyCommentActivity" />
+        <activity android:name=".function.my_reply.MyReplyActivity" />
+        <activity android:name=".function.data_report.DataReportActivity" />
+        <activity android:name=".function.modify_password.ModifyPasswordActivity" />
     </application>
 
 </manifest>

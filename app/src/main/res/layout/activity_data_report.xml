@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <include layout="@layout/layout_title_bar_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:text="上报年月"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <com.ruffian.library.RTextView
+            android:id="@+id/tv_year"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="3dp"
+            android:text="选择年份"
+            android:textColor="#999"
+            android:textSize="13sp"
+            rtv:border_color_normal="#4fc1e9"
+            rtv:border_width_normal="1dp"
+            rtv:corner_radius="3dp"
+            rtv:icon_direction="right"
+            rtv:icon_height="25dp"
+            rtv:icon_src_normal="@drawable/ic_dropdown_arrow"
+            rtv:icon_width="25dp" />
+
+        <com.ruffian.library.RTextView
+            android:id="@+id/tv_month"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="3dp"
+            android:text="选择月份"
+            android:textColor="#999"
+            android:textSize="13sp"
+            rtv:border_color_normal="#4fc1e9"
+            rtv:border_width_normal="1dp"
+            rtv:corner_radius="3dp"
+            rtv:icon_direction="right"
+            rtv:icon_height="25dp"
+            rtv:icon_src_normal="@drawable/ic_dropdown_arrow"
+            rtv:icon_width="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:text="员工总数"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_employee_count"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入人员总数"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:text="营收(元) "
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_income"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入营收(元)"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:maxEms="4"
+            android:text="新增合同数"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_contract_count"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入新增合同数"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:maxEms="4"
+            android:text="新增专利或者软著"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_patent_count"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入新增专利或者软著"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:maxEms="4"
+            android:text="大专以下学历人数"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_yx_count"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入大专以下学历人数"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:maxEms="4"
+            android:text="大专学历人数"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_dz_count"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入大专学历人数"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:maxEms="4"
+            android:text="本科学历人数"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_bk_count"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入本科学历人数"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:maxEms="4"
+            android:text="本科以上学历人数"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_ys_count"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_edit_text_bg_blue"
+            android:hint="请输入本科以上学历人数"
+            android:inputType="text"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/title_bar_bg"
+            android:text="提交"
+            android:textColor="@color/white" />
+    </FrameLayout>
+
+
+</LinearLayout>

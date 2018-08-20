@@ -1,5 +1,6 @@
 package com.hengkai.itc;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -8,6 +9,7 @@ import android.widget.FrameLayout;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.blankj.utilcode.util.ToastUtils;
+import com.hengkai.itc.app_final.ConstantFinal;
 import com.hengkai.itc.base.BaseActivity;
 import com.hengkai.itc.base.presenter.BasePresenter;
 import com.hengkai.itc.function.home.HomeFragment;
@@ -166,5 +168,11 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ConstantFinal.MODIFY_PASSWORD_REQUEST_CODE && resultCode == ConstantFinal.MODIFY_PASSWORD_RESULT_CODE) {
+            bottomNavigationBar.selectTab(0);//修改密码成功, 点击返回首页
+        }
+    }
 }
