@@ -14,7 +14,7 @@ public class URLFinal {
     /**
      * baseURL
      */
-//    public static final String BASE_URL = "http://192.168.2.18/OA_inside/mobile/" + VERSION + "/";
+//    public static final String BASE_URL = "http://192.168.2.18/ITCAPP/";
     public static final String BASE_URL = "http://192.168.2.157:8084/ITCAPP/";
 
     /**
@@ -29,6 +29,10 @@ public class URLFinal {
      * 修改头像
      */
     public static final String MODIFY_HEADER = "user/headPortraitUploading";
+    /**
+     * 数据上报
+     */
+    public static final String DATA_REPORT = "enterprisedatareport/insert";
     /**
      * 首页 - 获取新闻列表
      */

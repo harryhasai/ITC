@@ -5,10 +5,12 @@ import android.graphics.Color;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseActivity;
@@ -19,7 +21,9 @@ import com.ruffian.library.RTextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +33,7 @@ import butterknife.OnClick;
  * Created by Harry on 2018/8/18.
  * 数据上报
  */
-public class DataReportActivity extends BaseActivity {
+public class DataReportActivity extends BaseActivity<DataReportPresenter> {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -69,8 +73,8 @@ public class DataReportActivity extends BaseActivity {
     }
 
     @Override
-    protected BasePresenter bindPresenter() {
-        return null;
+    protected DataReportPresenter bindPresenter() {
+        return new DataReportPresenter();
     }
 
     @OnClick({R.id.iv_back, R.id.tv_year, R.id.tv_month, R.id.btn_commit})
@@ -97,9 +101,58 @@ public class DataReportActivity extends BaseActivity {
                 showYearOrMonthDialog(false, data);
                 break;
             case R.id.btn_commit:
-
+                dataReport();
                 break;
         }
+    }
+
+    /**
+     * 提交数据
+     */
+    private void dataReport() {
+        String year = tvYear.getText().toString().trim();
+        String month = tvMonth.getText().toString().trim();
+        String employeeCount = etEmployeeCount.getText().toString().trim();
+        String income = etIncome.getText().toString().trim();
+        String contractCount = etContractCount.getText().toString().trim();
+        String patentCount = etPatentCount.getText().toString().trim();
+        String yxCount = etYxCount.getText().toString().trim();
+        String dzCount = etDzCount.getText().toString().trim();
+        String bkCount = etBkCount.getText().toString().trim();
+        String ysCount = etYsCount.getText().toString().trim();
+        if (TextUtils.isEmpty(year) || year.equals("选择年份")) {
+            ToastUtils.showShort("请选择年份");
+            return;
+        } else if (TextUtils.isEmpty(month) || month.equals("选择月份")) {
+            ToastUtils.showShort("请选择年份");
+            return;
+        } else if (TextUtils.isEmpty(employeeCount)) {
+            ToastUtils.showShort("请输入人员总数");
+            return;
+        } else if (TextUtils.isEmpty(income)) {
+            ToastUtils.showShort("请输入营收");
+            return;
+        } else if (TextUtils.isEmpty(contractCount)) {
+            ToastUtils.showShort("请输入新增合同数");
+            return;
+        }else if (TextUtils.isEmpty(patentCount)) {
+            ToastUtils.showShort("请输入新增专利或者软著数");
+            return;
+        }
+
+        Map<String, String> params = new HashMap<>();
+        params.put("year", year);
+        params.put("month", month);
+        params.put("personTotal", employeeCount);
+        params.put("revenue", income);
+        params.put("newContractCount", contractCount);
+        params.put("patent", patentCount);
+        params.put("collegeDegreeBelow", yxCount);
+        params.put("collegeDegree", dzCount);
+        params.put("undergraduate", bkCount);
+        params.put("undergraduateAbove", ysCount);
+
+        mPresenter.dataReport(params);
     }
 
     /**

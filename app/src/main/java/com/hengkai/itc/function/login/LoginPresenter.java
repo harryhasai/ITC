@@ -33,7 +33,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
             @Override
             public void onNext(LoginEntity loginEntity) {
                 switch (loginEntity.code) {
-                    case 0:
+                    case 1:
                         saveInfo(loginEntity);
                         ToastUtils.showShort("登录成功");
                         EventBus.getDefault().post(new LoginEvent());

@@ -162,6 +162,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 SPUtils.putString(UserInfo.USER_ICON.name(), "");
 
                 ivHeader.setClickable(false);
+                ivHeader.setImageResource(R.drawable.ic_default_user_header);
                 tvName.setClickable(true);
                 tvName.setText("点击登录");
 

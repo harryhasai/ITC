@@ -1,6 +1,5 @@
 package com.hengkai.itc.function.common_question;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
