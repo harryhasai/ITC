@@ -10,6 +10,7 @@ import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseFragment;
 import com.hengkai.itc.base.presenter.BasePresenter;
 import com.hengkai.itc.network.entity.CommonItem;
+import com.hengkai.itc.network.entity.InformationContentEntity;
 import com.luck.picture.lib.tools.ScreenUtils;
 
 import java.util.ArrayList;
@@ -19,9 +20,11 @@ import java.util.List;
  * Created by Harry on 2018/8/14.
  * 资讯页面
  */
-public class InformationFragment extends BaseFragment {
+public class InformationFragment extends BaseFragment<InformationPresenter> {
 
     private String[] names = {"园区", "企业", "高校", "机构", "活动"};
+    private List<InformationContentEntity.DataBean> mList;
+    private InformationAdapter adapter;
 
     @Override
     protected int setupView() {
@@ -32,7 +35,10 @@ public class InformationFragment extends BaseFragment {
     protected void initView(View view) {
         initTitleBar(view);
 
+        mList = new ArrayList<>();
         setupRecyclerView(view);
+
+        mPresenter.getInformationType();
     }
 
     /**
@@ -54,11 +60,18 @@ public class InformationFragment extends BaseFragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        recyclerView.setAdapter(new InformationAdapter(R.layout.item_information, data, mActivity));
+        adapter = new InformationAdapter(R.layout.item_information, data, mActivity, mList);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
-    protected BasePresenter bindPresenter() {
-        return null;
+    protected InformationPresenter bindPresenter() {
+        return new InformationPresenter();
+    }
+
+    public void getInformationType(List<InformationContentEntity.DataBean> list) {
+        mList.clear();
+        mList.addAll(list);
+        adapter.notifyDataSetChanged();
     }
 }

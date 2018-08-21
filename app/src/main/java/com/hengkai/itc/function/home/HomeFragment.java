@@ -21,6 +21,7 @@ import com.hengkai.itc.function.common_question.CommonQuestionActivity;
 import com.hengkai.itc.function.login.LoginActivity;
 import com.hengkai.itc.function.need_know.NeedKnowActivity;
 import com.hengkai.itc.network.entity.HomeMultiItem;
+import com.hengkai.itc.network.entity.HomeNewsListEntity;
 import com.luck.picture.lib.tools.ScreenUtils;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import butterknife.Unbinder;
  * Created by Harry on 2018/8/14.
  * 首页
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment<HomePresenter> {
 
     Unbinder unbinder;
     @BindView(R.id.swipe_refresh_header)
@@ -46,6 +47,11 @@ public class HomeFragment extends BaseFragment {
 
     private List<HomeMultiItem> mList;
     private HomeAdapter adapter;
+    private List<HomeNewsListEntity.DataBean> newsListData;
+    /**
+     * 新闻图片的前半部分
+     */
+    private String attachmentPath = "";
 
     @Override
     protected int setupView() {
@@ -59,6 +65,7 @@ public class HomeFragment extends BaseFragment {
 
         initData();
         initRecyclerView();
+
     }
 
     /**
@@ -74,6 +81,7 @@ public class HomeFragment extends BaseFragment {
 
     private void initData() {
         mList = new ArrayList<>();
+        newsListData = new ArrayList<>();
 //        mList.add(new HomeMultiItem(HomeMultiItem.TITLE));
         mList.add(new HomeMultiItem(HomeMultiItem.BANNER));
         mList.add(new HomeMultiItem(HomeMultiItem.MENU));
@@ -83,13 +91,13 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    protected BasePresenter bindPresenter() {
-        return null;
+    protected HomePresenter bindPresenter() {
+        return new HomePresenter();
     }
 
     private void initRecyclerView() {
         swipeTarget.setLayoutManager(new LinearLayoutManager(mActivity));
-        adapter = new HomeAdapter(mList, mActivity);
+        adapter = new HomeAdapter(mList, mActivity, newsListData, attachmentPath, mPresenter);
         swipeTarget.setAdapter(adapter);
 
         //为适配器的子控件设置点击事件监听
@@ -123,7 +131,6 @@ public class HomeFragment extends BaseFragment {
                         break;
                     case R.id.rl_look_at_more://查看更多
                         ToastUtils.showShort("查看更多");
-                        startActivity(new Intent(mActivity, LoginActivity.class));
                         break;
                 }
             }
@@ -131,7 +138,7 @@ public class HomeFragment extends BaseFragment {
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swipeToLoadLayout.setRefreshing(false);
+                mPresenter.getNewsList();
             }
         });
     }
@@ -142,4 +149,18 @@ public class HomeFragment extends BaseFragment {
         unbinder.unbind();
     }
 
+    public void getNewsList(List<HomeNewsListEntity.DataBean> data, String attachmentPath) {
+        this.attachmentPath = attachmentPath;
+        newsListData.clear();
+        newsListData.addAll(data);
+        adapter.refreshNewsListAdapter();//更新新闻列表的数据
+    }
+
+    /**
+     * 停止刷新
+     */
+    public void stopRefreshing() {
+        swipeToLoadLayout.setRefreshing(false);
+        swipeToLoadLayout.setLoadingMore(false);
+    }
 }

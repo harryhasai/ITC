@@ -14,5 +14,23 @@ public class URLFinal {
     /**
      * baseURL
      */
-    public static final String BASE_URL = "http://192.168.2.18/OA_inside/mobile/" + VERSION + "/";
+//    public static final String BASE_URL = "http://192.168.2.18/OA_inside/mobile/" + VERSION + "/";
+    public static final String BASE_URL = "http://192.168.2.157:8084/ITCAPP/";
+
+    /**
+     * 资讯
+     */
+    public static final String INFORMATION_CONTENT = "news/selectAllClassify";
+    /**
+     * 登录
+     */
+    public static final String LOGIN = "user/moveUserLogin";
+    /**
+     * 修改头像
+     */
+    public static final String MODIFY_HEADER = "user/headPortraitUploading";
+    /**
+     * 首页 - 获取新闻列表
+     */
+    public static final String GET_NEWS_LIST_HOME = "news/selectNewsByClassifyId";
 }

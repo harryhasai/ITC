@@ -9,6 +9,7 @@
     <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
         android:id="@+id/swipeToLoadLayout"
         android:layout_width="match_parent"
+        android:descendantFocusability="blocksDescendants"
         android:layout_height="match_parent">
 
         <com.hengkai.itc.custom_view.refreshing.RefreshHeaderView

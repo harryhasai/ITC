@@ -1,6 +1,5 @@
 package com.hengkai.itc.utils;
 
-import com.blankj.utilcode.util.SPUtils;
 import com.hengkai.itc.app_final.URLFinal;
 
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class RetrofitHelper {
                 public Response intercept(Chain chain) throws IOException {
                     Response response = chain.proceed(chain.request());
                     String s = response.header("Set-Cookie");
-                    SPUtils.getInstance().put("cookie", s);
+                    SPUtils.putString("cookie", s);
                     return response;
                 }
             })

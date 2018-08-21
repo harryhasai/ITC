@@ -3,27 +3,35 @@ package com.hengkai.itc.function.mine;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.hengkai.itc.R;
 import com.hengkai.itc.app_final.ConstantFinal;
+import com.hengkai.itc.app_final.UserInfo;
 import com.hengkai.itc.base.BaseFragment;
-import com.hengkai.itc.base.presenter.BasePresenter;
+import com.hengkai.itc.event_bus.LoginEvent;
 import com.hengkai.itc.function.data_report.DataReportActivity;
+import com.hengkai.itc.function.login.LoginActivity;
 import com.hengkai.itc.function.modify_password.ModifyPasswordActivity;
 import com.hengkai.itc.function.my_comment.MyCommentActivity;
 import com.hengkai.itc.function.my_reply.MyReplyActivity;
 import com.hengkai.itc.utils.ImageUtil;
+import com.hengkai.itc.utils.PicassoCircleTransform;
+import com.hengkai.itc.utils.SPUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -36,7 +44,7 @@ import butterknife.Unbinder;
  * Created by Harry on 2018/8/14.
  * 我的
  */
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment<MinePresenter> {
 
     @BindView(R.id.iv_header)
     ImageView ivHeader;
@@ -53,35 +61,55 @@ public class MineFragment extends BaseFragment {
     protected void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
 
+        //注册EventBus
+        EventBus.getDefault().register(this);
+
+        initUserInfo();
     }
 
     @Override
-    protected BasePresenter bindPresenter() {
-        return null;
+    protected MinePresenter bindPresenter() {
+        return new MinePresenter();
     }
 
     /**
      * 初始化页面信息
      */
     private void initUserInfo() {
+        if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
+            ivHeader.setClickable(true);
+            tvName.setText(SPUtils.getString(UserInfo.USER_NAME.name(), ""));
+            tvName.setClickable(false);
+            Picasso.with(mActivity)
+                    .load(SPUtils.getString(UserInfo.USER_ICON.name(), ""))
+                    .error(R.drawable.ic_default_user_header)
+                    .transform(new PicassoCircleTransform())
+                    .resize(ConvertUtils.dp2px(65), ConvertUtils.dp2px(65))
+                    .centerCrop()
+                    .into(ivHeader);
+        } else {
+            ivHeader.setClickable(false);
+            tvName.setClickable(true);
+            tvName.setText("点击登录");
+        }
 
-//        Picasso.with(mActivity)
-//                .load(SPUtils.getString(UserInfo.ICON_LINK.name(), ""))
-//                .error(R.drawable.ic_user)
-//                .transform(new PicassoCircleTransform())
-//                .resize(WindowUtil.dp2px(50, mActivity), WindowUtil.dp2px(50, mActivity))
-//                .centerCrop()
-//                .into(ivUserHeader);
     }
 
     @Override
     public void onDestroyView() {
+        //销毁EventBus
+        EventBus.getDefault().unregister(this);
         super.onDestroyView();
         unbinder.unbind();
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginEvent(LoginEvent loginEvent) { //接收登录成功后的信息
+        initUserInfo();
+    }
+
     @OnClick({R.id.iv_header, R.id.tv_comment, R.id.tv_reply, R.id.tv_sign_up, R.id.fl_data_report,
-            R.id.fl_statistical_analysis, R.id.fl_modify_password, R.id.fl_exit_logon, R.id.fl_service_comment})
+            R.id.fl_statistical_analysis, R.id.fl_modify_password, R.id.fl_exit_logon, R.id.fl_service_comment, R.id.tv_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_header:    //头像
@@ -103,11 +131,19 @@ public class MineFragment extends BaseFragment {
             case R.id.fl_statistical_analysis://统计分析
                 break;
             case R.id.fl_modify_password://修改密码
-                // TODO: 2018/8/18 判断当前是否处于登录状态, 如果未登录则提示用户
-                mActivity.startActivityForResult(new Intent(mActivity, ModifyPasswordActivity.class), ConstantFinal.MODIFY_PASSWORD_REQUEST_CODE);
+                if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
+                    mActivity.startActivityForResult(new Intent(mActivity, ModifyPasswordActivity.class), ConstantFinal.MODIFY_PASSWORD_REQUEST_CODE);
+                } else {
+                    ToastUtils.showShort("您还未登录");
+                }
                 break;
             case R.id.fl_exit_logon:    //退出登录
                 exitLogon();
+                break;
+            case R.id.tv_name:  //点击名字登录
+                if (!SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
+                    startActivity(new Intent(mActivity, LoginActivity.class));
+                }
                 break;
         }
     }
@@ -121,7 +157,14 @@ public class MineFragment extends BaseFragment {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: 2018/8/18 退出登录相关操作
+                SPUtils.putBoolean(UserInfo.IS_LOGIN.name(), false);
+                SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+                SPUtils.putString(UserInfo.USER_ICON.name(), "");
+
+                ivHeader.setClickable(false);
+                tvName.setClickable(true);
+                tvName.setText("点击登录");
+
                 dialog.dismiss();
             }
         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -188,6 +231,27 @@ public class MineFragment extends BaseFragment {
             String compressPath = medias.get(0).getCompressPath();
             String base64 = ImageUtil.image2Base64(compressPath);
 
+            mPresenter.modifyHeader(base64);
         }
     }
+
+    /**
+     * 修改头像成功后, 设置头像给ImageView
+     * @param headPortraitLink
+     */
+    public void modifyHeader(String headPortraitLink) {
+        if (!TextUtils.isEmpty(headPortraitLink)) {
+            Picasso.with(mActivity)
+                    .load(headPortraitLink)
+                    .error(R.drawable.ic_default_user_header)
+                    .transform(new PicassoCircleTransform())
+                    .resize(ConvertUtils.dp2px(65), ConvertUtils.dp2px(65))
+                    .centerCrop()
+                    .into(ivHeader);
+        } else {
+            ivHeader.setImageResource(R.drawable.ic_default_user_header);
+        }
+
+    }
+
 }

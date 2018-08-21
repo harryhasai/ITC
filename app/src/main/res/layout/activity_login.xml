@@ -6,6 +6,17 @@
     android:background="@drawable/ic_login_bg"
     tools:ignore="HardcodedText">
 
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="back"
+        android:padding="5dp"
+        android:rotation="180"
+        android:src="@drawable/ic_arrow_white48" />
+
     <EditText
         android:id="@+id/et_username"
         android:layout_width="300dp"

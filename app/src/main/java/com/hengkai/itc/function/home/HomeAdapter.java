@@ -27,14 +27,21 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
 
     private List<Integer> images;
     private Activity mActivity;
+    private List<HomeNewsListEntity.DataBean> newsListData;
+    private HomeNewsListAdapter newsListAdapter;
+    private String attachmentPath;
+    private HomePresenter mPresenter;
 
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
-     *
-     * @param data A new list is created out of this one to avoid mutable list
+     *  @param data A new list is created out of this one to avoid mutable list
+     * @param newsListData
+     * @param attachmentPath
      */
-    public HomeAdapter(List<HomeMultiItem> data, Activity activity) {
+    public HomeAdapter(List<HomeMultiItem> data, Activity activity,
+                       List<HomeNewsListEntity.DataBean> newsListData, String attachmentPath,
+                       HomePresenter mPresenter) {
         super(data);
         mActivity = activity;
 //        addItemType(HomeMultiItem.TITLE, R.layout.view_home_title);
@@ -45,6 +52,10 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
         addItemType(HomeMultiItem.NEWS_LIST, R.layout.view_home_news_list);
 
         initImages();
+
+        this.mPresenter = mPresenter;
+        this.newsListData = newsListData;
+        this.attachmentPath = attachmentPath;
     }
 
     private void initImages() {
@@ -94,10 +105,6 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
      * @param helper BaseViewHolder
      */
     private void setupRecyclerView(BaseViewHolder helper) {
-        List<HomeNewsListEntity> newsList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            newsList.add(new HomeNewsListEntity());//TODO 暂时添加占位的临时数据
-        }
         RecyclerView recyclerView = helper.getView(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity) {
             @Override
@@ -106,15 +113,25 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
             }
         };
         recyclerView.setLayoutManager(layoutManager);
-        HomeNewsListAdapter newsListAdapter = new HomeNewsListAdapter(R.layout.item_home_news_list, newsList);
+        newsListAdapter = new HomeNewsListAdapter(R.layout.item_home_news_list, newsListData, mActivity, attachmentPath);
         recyclerView.setAdapter(newsListAdapter);
 
         newsListAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ToastUtils.showShort("点击了第" + position + "条数据查看详情");
+                HomeNewsListEntity.DataBean bean = newsListData.get(position);
+                if (bean.isImgNews) {
+                    //图片新闻
+
+                } else {
+                    //文字新闻
+                }
             }
         });
+
+        mPresenter.getNewsList();
+
     }
 
     /**
@@ -142,5 +159,9 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
         banner.setIndicatorGravity(BannerConfig.CENTER);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
+    }
+
+    public void refreshNewsListAdapter() {
+        newsListAdapter.notifyDataSetChanged();
     }
 }
