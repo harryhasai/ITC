@@ -250,10 +250,12 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     .resize(ConvertUtils.dp2px(65), ConvertUtils.dp2px(65))
                     .centerCrop()
                     .into(ivHeader);
+
+            // 保存用户头像资料
+            SPUtils.putString(UserInfo.USER_ICON.name(), headPortraitLink);
         } else {
             ivHeader.setImageResource(R.drawable.ic_default_user_header);
         }
-
     }
 
 }
