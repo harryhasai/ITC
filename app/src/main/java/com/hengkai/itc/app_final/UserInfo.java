@@ -10,6 +10,7 @@ public enum  UserInfo {
     EMAIL,
     USER_NAME,
     USER_ICON,
+    USER_ICON_FIRST_HALF,
     IS_DATA_REPORT,
     TOKEN,
     IS_LOGIN

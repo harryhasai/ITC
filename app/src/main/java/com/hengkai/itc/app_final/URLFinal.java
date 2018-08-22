@@ -16,6 +16,7 @@ public class URLFinal {
      */
 //    public static final String BASE_URL = "http://192.168.2.18/ITCAPP/";
     public static final String BASE_URL = "http://192.168.2.157:8084/ITCAPP/";
+//    public static final String BASE_URL = "http://192.168.2.22:8080/ITCAPP/";
 
     /**
      * 资讯
@@ -37,4 +38,8 @@ public class URLFinal {
      * 首页 - 获取新闻列表
      */
     public static final String GET_NEWS_LIST_HOME = "news/selectNewsByClassifyId";
+    /**
+     * 获取我的评论列表
+     */
+    public static final String MY_COMMENT_LIST = "comment/getMyCommentListData";
 }

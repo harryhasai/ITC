@@ -159,6 +159,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             public void onClick(DialogInterface dialog, int which) {
                 SPUtils.putBoolean(UserInfo.IS_LOGIN.name(), false);
                 SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+                SPUtils.putString(UserInfo.USER_ID.name(), "0");
                 SPUtils.putString(UserInfo.USER_ICON.name(), "");
 
                 ivHeader.setClickable(false);

@@ -12,7 +12,7 @@
         android:id="@+id/view_common_line"
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="@drawable/shape_common_line"/>
+        android:background="@drawable/shape_common_line" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,22 +48,22 @@
             android:textColor="#999"
             android:textSize="11sp" />
 
-        <com.ruffian.library.RTextView
-            android:id="@+id/tv_reply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="3dp"
-            android:paddingBottom="2dp"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:text="回复"
-            android:textColor="#999"
-            android:textSize="13sp"
-            rtv:border_color_normal="#999"
-            rtv:border_width_normal="1dp"
-            rtv:corner_radius="3dp" />
+        <!--<com.ruffian.library.RTextView-->
+        <!--android:id="@+id/tv_reply"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginTop="3dp"-->
+        <!--android:paddingBottom="2dp"-->
+        <!--android:paddingEnd="10dp"-->
+        <!--android:paddingStart="10dp"-->
+        <!--android:paddingTop="2dp"-->
+        <!--android:text="回复"-->
+        <!--android:textColor="#999"-->
+        <!--android:textSize="13sp"-->
+        <!--rtv:border_color_normal="#999"-->
+        <!--rtv:border_width_normal="1dp"-->
+        <!--rtv:corner_radius="3dp" />-->
 
     </RelativeLayout>
 
@@ -71,8 +71,8 @@
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:lineSpacingExtra="3dp"
         android:text="蒹葭苍苍白露为霜所谓伊人在水一方蒹葭苍苍白露为霜所谓伊人在水一方蒹葭苍苍白露为霜所谓伊人在水一方"
         android:textColor="#333" />
@@ -80,23 +80,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/shape_reply_content_bg"
         android:orientation="vertical"
-        android:layout_margin="10dp"
         android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_quote_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:lines="1"
             android:text="洛阳IT网"
             android:textColor="#333" />
 
         <TextView
             android:id="@+id/tv_quote_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
             android:text="蒹葭苍苍 白露为霜 所谓伊人 在水一方蒹葭苍苍 白露为霜 所谓伊人 在水一方"
             android:textColor="#808080" />
 
