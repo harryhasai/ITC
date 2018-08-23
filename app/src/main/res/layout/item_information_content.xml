@@ -9,4 +9,7 @@
     android:paddingTop="10dp"
     android:text="园区通知"
     android:textColor="@color/black4"
-    tools:ignore="HardcodedText" />
+    android:clickable="true"
+    android:background="@drawable/item_select_bg"
+    tools:ignore="HardcodedText"
+    android:focusable="true" />

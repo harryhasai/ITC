@@ -2,6 +2,7 @@ package com.hengkai.itc.function.informations;
 
 import android.app.Activity;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -30,9 +31,17 @@ public class InformationContentAdapter extends BaseQuickAdapter<CommonItem, Base
         helper.setText(R.id.tv_content_name, item.name);
         TextView tvContentName = helper.getView(R.id.tv_content_name);
         if ((helper.getAdapterPosition() + 1) % 3 == 0) {
-            tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line1));
+            if(TextUtils.isEmpty(item.name)){
+                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line1));
+            } else {
+                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.selector_item_information_line1));
+            }
         } else {
-            tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line2));
+            if(TextUtils.isEmpty(item.name)){
+                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line2));
+            } else {
+                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.selector_item_information_line2));
+            }
         }
     }
 }

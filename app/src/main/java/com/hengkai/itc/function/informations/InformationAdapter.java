@@ -81,6 +81,13 @@ public class InformationAdapter extends BaseQuickAdapter<CommonItem, BaseViewHol
                 break;
         }
 
+        // 不足3的填充完整
+        if(data.size() % 3 != 0){
+            int n = 3 - data.size() % 3;
+            for (int i = 0; i < n; i++){
+                data.add(new CommonItem());
+            }
+        }
         rvInformation.setAdapter(new InformationContentAdapter(R.layout.item_information_content, data, mActivity));
     }
 }
