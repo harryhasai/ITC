@@ -33,6 +33,7 @@
         <activity android:name=".function.data_report.DataReportActivity" />
         <activity android:name=".function.modify_password.ModifyPasswordActivity" />
         <activity android:name=".function.news_detail.NewsDetailActivity" />
+        <activity android:name=".function.news_list.NewsListActivity" />
     </application>
 
 </manifest>

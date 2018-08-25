@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -35,24 +36,28 @@ public class TextNewsHasCommentAdapter extends BaseQuickAdapter<TextNewsHasComme
 
     @Override
     protected void convert(BaseViewHolder helper, TextNewsHasCommentEntity.DataBean.CommentListBean item) {
-        Picasso.with(mActivity)
-                .load(attachmentPath + item.commentImg)
-                .error(R.mipmap.ic_launcher)
-                .transform(new PicassoCircleTransform())
-                .resize(ConvertUtils.dp2px(50), ConvertUtils.dp2px(50))
-                .centerCrop()
-                .into((ImageView) helper.getView(R.id.iv_header));
+        TextView tvNoComment = helper.getView(R.id.tv_no_comment);
+        if (tvNoComment == null) {
+            Picasso.with(mActivity)
+                    .load(attachmentPath + item.commentImg)
+                    .error(R.mipmap.ic_launcher)
+                    .transform(new PicassoCircleTransform())
+                    .resize(ConvertUtils.dp2px(50), ConvertUtils.dp2px(50))
+                    .centerCrop()
+                    .into((ImageView) helper.getView(R.id.iv_header));
 
-        String time = DateFormatUtils.getFormatedNewsTime(item.createTime);
-        helper.setText(R.id.tv_name, item.commentUser)
-                .setText(R.id.tv_content, item.content)
-                .setText(R.id.tv_time, time);
-        LinearLayout llContainer = helper.getView(R.id.ll_container);
-        if (TextUtils.isEmpty(item.replyUser) && TextUtils.isEmpty(item.replyContent)) {
-            llContainer.setVisibility(View.GONE);
-        } else {
-            helper.setText(R.id.tv_reply_name, item.replyUser)
-                    .setText(R.id.tv_reply_content, item.replyContent);
+            String time = DateFormatUtils.getFormatedNewsTime(item.createTime);
+            helper.setText(R.id.tv_name, item.commentUser)
+                    .setText(R.id.tv_content, item.content)
+                    .setText(R.id.tv_time, time);
+            LinearLayout llContainer = helper.getView(R.id.ll_container);
+            if (TextUtils.isEmpty(item.replyUser) && TextUtils.isEmpty(item.replyContent)) {
+                llContainer.setVisibility(View.GONE);
+            } else {
+                helper.setText(R.id.tv_reply_name, item.replyUser)
+                        .setText(R.id.tv_reply_content, item.replyContent);
+            }
         }
+
     }
 }
