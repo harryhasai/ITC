@@ -1,6 +1,7 @@
 package com.hengkai.itc.function.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.hengkai.itc.R;
+import com.hengkai.itc.function.news_detail.NewsDetailActivity;
 import com.hengkai.itc.network.entity.HomeMultiItem;
 import com.hengkai.itc.network.entity.HomeNewsListEntity;
 import com.youth.banner.Banner;
@@ -119,14 +121,13 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
         newsListAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.showShort("点击了第" + position + "条数据查看详情");
                 HomeNewsListEntity.DataBean bean = newsListData.get(position);
-                if (bean.isImgNews) {
-                    //图片新闻
+                Intent intent = new Intent(mActivity, NewsDetailActivity.class);
+                intent.putExtra("isImgNews", bean.isImgNews);
+                intent.putExtra("isComment", bean.isComment);
+                intent.putExtra("newsId", bean.id);
+                mActivity.startActivity(intent);
 
-                } else {
-                    //文字新闻
-                }
             }
         });
 

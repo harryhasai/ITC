@@ -19,21 +19,21 @@ import okhttp3.RequestBody;
 public class OkHttpHelper {
 
     /**
-     * @param url 网络访问路径(不包含BaseUrl)
+     * @param url 网络访问路径
      * @param callback 网络访问回调
      */
     public static void get(@NonNull String url, Callback callback) {
         // 创建OKHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(URLFinal.BASE_URL + url)
+                .url(url)
                 .get()
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
     }
 
     /**
-     * @param url 网络访问路径(不包含BaseUrl)
+     * @param url 网络访问路径
      * @param params 网络访问参数
      * @param callback 网络访问回调
      */
@@ -61,7 +61,7 @@ public class OkHttpHelper {
         RequestBody requestBody = builder.build();
 
         Request request = new Request.Builder()
-                .url(URLFinal.BASE_URL + url)
+                .url(url)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(callback);

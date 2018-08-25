@@ -30,6 +30,7 @@ public class HomeModel extends BaseModel {
         Map<String, String> params = new HashMap<>();
 
         params.put("Type", "releaseTime");
+        params.put("pageNum", "3");
 
         service.getNewsList(URLFinal.GET_NEWS_LIST_HOME, params)
                 .subscribeOn(Schedulers.io())

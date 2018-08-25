@@ -39,6 +39,10 @@ public class URLFinal {
      */
     public static final String GET_NEWS_LIST_HOME = "news/selectNewsByClassifyId";
     /**
+     * 新闻详情
+     */
+    public static final String GET_NEWS_DETAIL = "news/selectNewDetails";
+    /**
      * 获取我的评论列表
      */
     public static final String MY_COMMENT_LIST = "comment/getMyCommentListData";

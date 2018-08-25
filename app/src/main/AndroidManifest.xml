@@ -32,6 +32,7 @@
         <activity android:name=".function.my_reply.MyReplyActivity" />
         <activity android:name=".function.data_report.DataReportActivity" />
         <activity android:name=".function.modify_password.ModifyPasswordActivity" />
+        <activity android:name=".function.news_detail.NewsDetailActivity" />
     </application>
 
 </manifest>
