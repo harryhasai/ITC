@@ -46,4 +46,16 @@ public class URLFinal {
      * 获取我的评论列表
      */
     public static final String MY_COMMENT_LIST = "comment/getMyCommentListData";
+    /**
+     * 我的基金 - 列表
+     */
+    public static final String MY_FUND_LIST = "portalFund/getListData";
+    /**
+     * 我的基金列表详情
+     */
+    public static final String MY_FUND_DETAIL = "portalFund/getDetailsData";
+    /**
+     * 我的基金列表详情 - 报名
+     */
+    public static final String MY_FUND_DETAIL_SIGN_UP = "portalFund/insertexamine";
 }

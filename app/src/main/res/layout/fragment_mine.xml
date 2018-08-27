@@ -94,10 +94,39 @@
         </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/fl_data_report"
+            android:id="@+id/fl_my_fund"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:padding="15dp">
+
+            <com.ruffian.library.RTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="20dp"
+                android:text="我的基金"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                rtv:icon_direction="left"
+                rtv:icon_height="15dp"
+                rtv:icon_src_normal="@drawable/ic_my_fund"
+                rtv:icon_width="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="小箭头"
+                android:src="@drawable/ic_arrow_gray32" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_data_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
             android:padding="15dp">
 

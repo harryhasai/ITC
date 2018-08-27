@@ -19,6 +19,7 @@ import com.hengkai.itc.function.data_report.DataReportActivity;
 import com.hengkai.itc.function.login.LoginActivity;
 import com.hengkai.itc.function.modify_password.ModifyPasswordActivity;
 import com.hengkai.itc.function.my_comment.MyCommentActivity;
+import com.hengkai.itc.function.my_fund.MyFundActivity;
 import com.hengkai.itc.function.my_reply.MyReplyActivity;
 import com.hengkai.itc.utils.ImageUtil;
 import com.hengkai.itc.utils.PicassoCircleTransform;
@@ -109,7 +110,8 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     }
 
     @OnClick({R.id.iv_header, R.id.tv_comment, R.id.tv_reply, R.id.tv_sign_up, R.id.fl_data_report,
-            R.id.fl_statistical_analysis, R.id.fl_modify_password, R.id.fl_exit_logon, R.id.fl_service_comment, R.id.tv_name})
+            R.id.fl_statistical_analysis, R.id.fl_modify_password, R.id.fl_exit_logon,
+            R.id.fl_service_comment, R.id.tv_name, R.id.fl_my_fund})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_header:    //头像
@@ -122,6 +124,9 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 startActivity(new Intent(mActivity, MyReplyActivity.class));
                 break;
             case R.id.tv_sign_up:   //我的报名
+                break;
+            case R.id.fl_my_fund:   //我的基金
+                startActivity(new Intent(mActivity, MyFundActivity.class));
                 break;
             case R.id.fl_data_report:   //数据上报
                 startActivity(new Intent(mActivity, DataReportActivity.class));
@@ -239,6 +244,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     /**
      * 修改头像成功后, 设置头像给ImageView
+     *
      * @param headPortraitLink
      */
     public void modifyHeader(String headPortraitLink) {

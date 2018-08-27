@@ -34,6 +34,8 @@
         <activity android:name=".function.modify_password.ModifyPasswordActivity" />
         <activity android:name=".function.news_detail.NewsDetailActivity" />
         <activity android:name=".function.news_list.NewsListActivity" />
+        <activity android:name=".function.my_fund.MyFundActivity" />
+        <activity android:name=".function.my_fund.detail.MyFundDetailActivity" />
     </application>
 
 </manifest>
