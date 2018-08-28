@@ -19,13 +19,12 @@ import java.util.List;
 public class MyFundAdapter extends BaseQuickAdapter<MyFundEntity.DataBean, BaseViewHolder> {
 
     private Activity mActivity;
-    private String attachmentPath;
+    public String attachmentPath;
 
-    public MyFundAdapter(int layoutResId, @Nullable List<MyFundEntity.DataBean> data, Activity activity, String attachmentPath) {
+    public MyFundAdapter(int layoutResId, @Nullable List<MyFundEntity.DataBean> data, Activity activity) {
         super(layoutResId, data);
 
         this.mActivity = activity;
-        this.attachmentPath = attachmentPath;
     }
 
     @Override

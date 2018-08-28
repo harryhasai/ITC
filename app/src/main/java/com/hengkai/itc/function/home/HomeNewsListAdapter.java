@@ -21,12 +21,11 @@ import java.util.List;
 public class HomeNewsListAdapter extends BaseQuickAdapter<HomeNewsListEntity.DataBean, BaseViewHolder> {
 
     private Activity mActivity;
-    private String attachmentPath;
+    public String attachmentPath;
 
-    public HomeNewsListAdapter(int layoutResId, @Nullable List<HomeNewsListEntity.DataBean> data, Activity mActivity, String attachmentPath) {
+    public HomeNewsListAdapter(int layoutResId, @Nullable List<HomeNewsListEntity.DataBean> data, Activity mActivity) {
         super(layoutResId, data);
         this.mActivity = mActivity;
-        this.attachmentPath = attachmentPath;
     }
 
     @Override

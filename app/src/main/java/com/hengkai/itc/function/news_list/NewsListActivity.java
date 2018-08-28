@@ -47,7 +47,6 @@ public class NewsListActivity extends BaseActivity<NewsListPresenter> {
     private int pageNum = 1;
     private int childID;
     private NewsListAdapter adapter;
-    private String attachmentPath;
 
     @Override
     protected int setupView() {
@@ -91,7 +90,7 @@ public class NewsListActivity extends BaseActivity<NewsListPresenter> {
 
     private void initRecyclerView() {
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new NewsListAdapter(R.layout.item_home_news_list, mList, this, attachmentPath);
+        adapter = new NewsListAdapter(R.layout.item_home_news_list, mList, this);
         swipeTarget.setAdapter(adapter);
 
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -133,8 +132,8 @@ public class NewsListActivity extends BaseActivity<NewsListPresenter> {
             mList.clear();
         }
         mList.addAll(data);
+        adapter.attachmentPath = attachmentPath;
         adapter.notifyDataSetChanged();
-        this.attachmentPath = attachmentPath;
     }
 
     public void stopRefreshing() {

@@ -30,8 +30,7 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
     private List<Integer> images;
     private Activity mActivity;
     private List<HomeNewsListEntity.DataBean> newsListData;
-    private HomeNewsListAdapter newsListAdapter;
-    private String attachmentPath;
+    public HomeNewsListAdapter newsListAdapter;
     private HomePresenter mPresenter;
 
     /**
@@ -39,10 +38,9 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
      * some initialization data.
      *  @param data A new list is created out of this one to avoid mutable list
      * @param newsListData
-     * @param attachmentPath
      */
     public HomeAdapter(List<HomeMultiItem> data, Activity activity,
-                       List<HomeNewsListEntity.DataBean> newsListData, String attachmentPath,
+                       List<HomeNewsListEntity.DataBean> newsListData,
                        HomePresenter mPresenter) {
         super(data);
         mActivity = activity;
@@ -57,7 +55,6 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
 
         this.mPresenter = mPresenter;
         this.newsListData = newsListData;
-        this.attachmentPath = attachmentPath;
     }
 
     private void initImages() {
@@ -115,7 +112,7 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
             }
         };
         recyclerView.setLayoutManager(layoutManager);
-        newsListAdapter = new HomeNewsListAdapter(R.layout.item_home_news_list, newsListData, mActivity, attachmentPath);
+        newsListAdapter = new HomeNewsListAdapter(R.layout.item_home_news_list, newsListData, mActivity);
         recyclerView.setAdapter(newsListAdapter);
 
         newsListAdapter.setOnItemClickListener(new OnItemClickListener() {

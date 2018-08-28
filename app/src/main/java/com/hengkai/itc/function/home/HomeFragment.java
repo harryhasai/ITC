@@ -48,10 +48,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     private List<HomeMultiItem> mList;
     private HomeAdapter adapter;
     private List<HomeNewsListEntity.DataBean> newsListData;
-    /**
-     * 新闻图片的前半部分
-     */
-    private String attachmentPath = "";
 
     @Override
     protected int setupView() {
@@ -97,7 +93,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
 
     private void initRecyclerView() {
         swipeTarget.setLayoutManager(new LinearLayoutManager(mActivity));
-        adapter = new HomeAdapter(mList, mActivity, newsListData, attachmentPath, mPresenter);
+        adapter = new HomeAdapter(mList, mActivity, newsListData, mPresenter);
         swipeTarget.setAdapter(adapter);
 
         //为适配器的子控件设置点击事件监听
@@ -150,7 +146,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     }
 
     public void getNewsList(List<HomeNewsListEntity.DataBean> data, String attachmentPath) {
-        this.attachmentPath = attachmentPath;
+        adapter.newsListAdapter.attachmentPath = attachmentPath;
         newsListData.clear();
         newsListData.addAll(data);
         adapter.refreshNewsListAdapter();//更新新闻列表的数据

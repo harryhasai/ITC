@@ -52,7 +52,6 @@ public class MyFundActivity extends BaseActivity<MyFundPresenter> {
     private List<MyFundEntity.DataBean> mList;
     private boolean isLoadMore = false;
     private int pageNum = 1;
-    private String attachmentPath;
     private MyFundAdapter adapter;
 
     @Override
@@ -102,7 +101,7 @@ public class MyFundActivity extends BaseActivity<MyFundPresenter> {
 
     private void initRecyclerView() {
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyFundAdapter(R.layout.item_my_fund_list, mList, this, attachmentPath);
+        adapter = new MyFundAdapter(R.layout.item_my_fund_list, mList, this);
         swipeTarget.setAdapter(adapter);
 
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -142,8 +141,8 @@ public class MyFundActivity extends BaseActivity<MyFundPresenter> {
             mList.clear();
         }
         mList.addAll(data);
+        adapter.attachmentPath = attachmentPath;
         adapter.notifyDataSetChanged();
-        this.attachmentPath = attachmentPath;
     }
 
     public void stopRefreshing() {
