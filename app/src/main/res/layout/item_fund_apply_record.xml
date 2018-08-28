@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/tv_apply_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="申请人"
+        android:textColor="@color/black2"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv_apply_user"
+        android:layout_alignParentEnd="true"
+        android:text="审核状态"
+        android:textColor="@color/steelblue"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_apply_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_apply_user"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="2dp"
+        android:text="申请内容申请内容申请内容申请内容申请内容申请内容申请内容申请内容申请内容申请内容申请内容申请内容"
+        android:textColor="@color/black4"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_apply_content"
+        android:layout_marginTop="10dp"
+        android:background="#eee" />
+
+    <TextView
+        android:id="@+id/tv_examine_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_line"
+        android:layout_marginTop="10dp"
+        android:text="审核人"
+        android:textColor="@color/black2"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_examine_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv_examine_user"
+        android:layout_alignParentEnd="true"
+        android:text="审核时间"
+        android:textColor="@color/black4"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_examine_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_examine_user"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="2dp"
+        android:text="审核内容审核内容审核内容审核内容审核内容审核内容审核内容审核内容审核内容审核内容审核内容审核内容"
+        android:textColor="@color/black4"
+        android:textSize="13sp" />
+
+</RelativeLayout>

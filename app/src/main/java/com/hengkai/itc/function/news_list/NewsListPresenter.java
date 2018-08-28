@@ -43,6 +43,7 @@ public class NewsListPresenter extends BasePresenter<NewsListActivity> {
             @Override
             public void onError(Throwable e) {
                 ToastUtils.showShort("网络连接错误");
+                view.stopRefreshing();
             }
 
             @Override

@@ -36,6 +36,7 @@
         <activity android:name=".function.news_list.NewsListActivity" />
         <activity android:name=".function.my_fund.MyFundActivity" />
         <activity android:name=".function.my_fund.detail.MyFundDetailActivity" />
+        <activity android:name=".function.my_fund_apply_record.FundApplyRecordActivity" />
     </application>
 
 </manifest>

@@ -4,23 +4,37 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.Gson;
 import com.hengkai.itc.R;
 import com.hengkai.itc.app_final.ConstantFinal;
+import com.hengkai.itc.app_final.URLFinal;
+import com.hengkai.itc.app_final.UserInfo;
 import com.hengkai.itc.base.BaseActivity;
 import com.hengkai.itc.base.presenter.BasePresenter;
 import com.hengkai.itc.function.login.LoginActivity;
+import com.hengkai.itc.network.entity.CommonEntity;
 import com.hengkai.itc.utils.EditTextFilterUtil;
+import com.hengkai.itc.utils.OkHttpHelper;
+import com.hengkai.itc.utils.SPUtils;
 import com.jaeger.library.StatusBarUtil;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by Harry on 2018/8/18.
@@ -99,9 +113,58 @@ public class ModifyPasswordActivity extends BaseActivity {
             return;
         }
 
+        Map<String, String> params = new HashMap<>();
+        params.put("userId", SPUtils.getString(UserInfo.USER_ID.name(), ""));
+        params.put("oldPass", oldPassword);
+        params.put("newPass", newPassword);
+        params.put("repeatPass", confirmNewPassword);
+        OkHttpHelper.post(URLFinal.BASE_URL + URLFinal.MODIFY_PASSWORD, params, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                ToastUtils.showShort("网络连接错误");
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String s = response.body().string();
+                if (!TextUtils.isEmpty(s)) {
+                    Gson gson = new Gson();
+                    CommonEntity commonEntity = gson.fromJson(s, CommonEntity.class);
+                    switch (commonEntity.code) {
+                        case 1:
+                            ToastUtils.showShort("修改成功");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showSuccessDialog();
+                                }
+                            });
+                            break;
+                        case 0:
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showLoginDialog(ModifyPasswordActivity.this);
+                                }
+                            });
+                            break;
+                        default:
+                            ToastUtils.showShort(commonEntity.msg);
+                            break;
+                    }
+                }
+            }
+        });
+
     }
 
     private void showSuccessDialog() {
+        //修改用户信息, 变为未登录状态
+        SPUtils.putBoolean(UserInfo.IS_LOGIN.name(), false);
+        SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+        SPUtils.putString(UserInfo.USER_ID.name(), "0");
+        SPUtils.putString(UserInfo.USER_ICON.name(), "");
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("修改密码成功")
                 .setMessage("为了您的账户安全, 请牢记登录密码并妥善保管")
@@ -109,7 +172,6 @@ public class ModifyPasswordActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(ModifyPasswordActivity.this, LoginActivity.class));
-                        // TODO: 2018/8/18 修改用户是否登录的信息
                         dialog.dismiss();
                         finish();
                     }

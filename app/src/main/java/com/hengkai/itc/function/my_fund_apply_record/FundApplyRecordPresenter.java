@@ -1,8 +1,8 @@
-package com.hengkai.itc.function.my_fund;
+package com.hengkai.itc.function.my_fund_apply_record;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.hengkai.itc.base.presenter.BasePresenter;
-import com.hengkai.itc.network.entity.MyFundEntity;
+import com.hengkai.itc.network.entity.FundApplyRecordEntity;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -10,32 +10,32 @@ import io.reactivex.disposables.Disposable;
 /**
  * Created by Harry on 2018/8/27.
  */
-public class MyFundPresenter extends BasePresenter<MyFundActivity> {
+public class FundApplyRecordPresenter extends BasePresenter<FundApplyRecordActivity> {
 
-    private final MyFundModel model;
+    private final FundApplyRecordModel model;
 
-    public MyFundPresenter() {
-        model = new MyFundModel();
+    public FundApplyRecordPresenter() {
+        model = new FundApplyRecordModel();
     }
 
-    public void getFundList(String newsTitle, int pageNum) {
-        model.getFundList(newsTitle, pageNum, new Observer<MyFundEntity>() {
+    public void getApplyList(int pageNum) {
+        model.getApplyList(pageNum, new Observer<FundApplyRecordEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(MyFundEntity myFundEntity) {
-                switch (myFundEntity.code) {
+            public void onNext(FundApplyRecordEntity fundApplyRecordEntity) {
+                switch (fundApplyRecordEntity.code) {
                     case 1:
-                        view.getFundList(myFundEntity.data, myFundEntity.attachmentPath);
+                        view.getApplyList(fundApplyRecordEntity.data);
                         break;
                     case 0:
                         view.showLoginDialog(view);
                         break;
                     default:
-                        ToastUtils.showShort(myFundEntity.msg);
+                        ToastUtils.showShort(fundApplyRecordEntity.msg);
                         break;
                 }
             }

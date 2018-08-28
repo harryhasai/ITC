@@ -58,4 +58,12 @@ public class URLFinal {
      * 我的基金列表详情 - 报名
      */
     public static final String MY_FUND_DETAIL_SIGN_UP = "portalFund/insertexamine";
+    /**
+     * 我的基金申请记录
+     */
+    public static final String FUND_APPLY_RECORD = "portalFund/getMyExamine";
+    /**
+     * 修改密码
+     */
+    public static final String MODIFY_PASSWORD = "user/updatePassWord";
 }
