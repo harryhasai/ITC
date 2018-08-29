@@ -2,6 +2,7 @@ package com.hengkai.itc.function.news_detail;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.hengkai.itc.base.presenter.BasePresenter;
+import com.hengkai.itc.network.entity.CommonEntity;
 import com.hengkai.itc.network.entity.ImageNewsHasCommentEntity;
 import com.hengkai.itc.network.entity.ImageNewsNoCommentEntity;
 import com.hengkai.itc.network.entity.TextNewsHasCommentEntity;
@@ -153,6 +154,46 @@ public class NewsDetailPresenter extends BasePresenter<NewsDetailActivity> {
                         break;
                     default:
                         ToastUtils.showShort(textNewsNoCommentEntity.msg);
+                        break;
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtils.showShort("网络连接错误");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    /**
+     * 评论
+     * @param newsId 当前新闻ID
+     * @param content 评论内容
+     */
+    public void comment(int newsId, String content) {
+        model.comment(newsId, content, new Observer<CommonEntity>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(CommonEntity commonEntity) {
+                switch (commonEntity.code) {
+                    case 1:
+                        view.comment();
+                        ToastUtils.showShort("评论成功");
+                        break;
+                    case 0:
+                        view.showLoginDialog(view);
+                        break;
+                    default:
+                        ToastUtils.showShort(commonEntity.msg);
                         break;
                 }
             }

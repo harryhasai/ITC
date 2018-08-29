@@ -43,6 +43,10 @@ public class URLFinal {
      */
     public static final String GET_NEWS_DETAIL = "news/selectNewDetails";
     /**
+     * 新闻详情 - 评论
+     */
+    public static final String GO_TO_COMMENT = "comment/insertComment";
+    /**
      * 获取我的评论列表
      */
     public static final String MY_COMMENT_LIST = "comment/getMyCommentListData";

@@ -1,13 +1,16 @@
 package com.hengkai.itc.function.news_detail;
 
 import com.hengkai.itc.app_final.URLFinal;
+import com.hengkai.itc.app_final.UserInfo;
 import com.hengkai.itc.base.model.BaseModel;
+import com.hengkai.itc.network.entity.CommonEntity;
 import com.hengkai.itc.network.entity.ImageNewsHasCommentEntity;
 import com.hengkai.itc.network.entity.ImageNewsNoCommentEntity;
 import com.hengkai.itc.network.entity.TextNewsHasCommentEntity;
 import com.hengkai.itc.network.entity.TextNewsNoCommentEntity;
 import com.hengkai.itc.network.service.NewsDetailService;
 import com.hengkai.itc.utils.RetrofitHelper;
+import com.hengkai.itc.utils.SPUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -88,4 +91,24 @@ public class NewsDetailModel extends BaseModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
+
+    /**
+     * 发表评论
+     */
+    public void comment(int newsId, String content, Observer<CommonEntity> observer) {
+        Map<String, String> params = new HashMap<>();
+
+        params.put("UserId", SPUtils.getString(UserInfo.USER_ID.name(), ""));
+        params.put("NewsId", String.valueOf(newsId));
+        params.put("Content", content);
+        params.put("Type", "0");
+        params.put("token", SPUtils.getString(UserInfo.TOKEN.name(), ""));
+
+        service.comment(URLFinal.GO_TO_COMMENT, params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+
 }

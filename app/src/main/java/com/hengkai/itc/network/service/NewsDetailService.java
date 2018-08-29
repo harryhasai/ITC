@@ -1,5 +1,6 @@
 package com.hengkai.itc.network.service;
 
+import com.hengkai.itc.network.entity.CommonEntity;
 import com.hengkai.itc.network.entity.ImageNewsHasCommentEntity;
 import com.hengkai.itc.network.entity.ImageNewsNoCommentEntity;
 import com.hengkai.itc.network.entity.NewsDetailEntity;
@@ -34,4 +35,8 @@ public interface NewsDetailService {
     @FormUrlEncoded
     @POST
     Observable<TextNewsNoCommentEntity> getTextNewsNoComment(@Url String url, @FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST
+    Observable<CommonEntity> comment(@Url String url, @FieldMap Map<String, String> params);
 }

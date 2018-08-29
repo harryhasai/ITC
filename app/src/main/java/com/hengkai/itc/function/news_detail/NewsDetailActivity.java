@@ -1,15 +1,18 @@
 package com.hengkai.itc.function.news_detail;
 
 import android.content.Intent;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseActivity;
@@ -51,6 +54,8 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
     private static final int NEWS_TYPE4 = 104;
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_right)
+    TextView tvRight;
     @BindView(R.id.tv_news_title)
     TextView tvNewsTitle;
     @BindView(R.id.tv_author)
@@ -75,6 +80,15 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
      * 新闻ID
      */
     private int newsId;
+    private BottomSheetDialog commentDialog;
+    /**
+     * 图片新闻的评论适配器
+     */
+    private ImageNewsHasCommentAdapter imageNewsHasCommentAdapter;
+    /**
+     * 文字新闻的评论适配器
+     */
+    private TextNewsHasCommentAdapter textNewsHasCommentAdapter;
 
     @Override
     protected int setupView() {
@@ -88,6 +102,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
         ButterKnife.bind(this);
 
         tvTitle.setText("新闻详情");
+        tvRight.setText("评论");
 
         isImgNews = getIntent().getBooleanExtra("isImgNews", false);
         isComment = getIntent().getStringExtra("isComment");
@@ -157,18 +172,17 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             }
         });
 
-        ImageNewsHasCommentAdapter adapter;
         List<ImageNewsHasCommentEntity.DataBean.CommentListBean> commentList = imageNewsHasCommentEntity.data.commentList;
         if (commentList.size() == 0) {
             ImageNewsHasCommentEntity.DataBean.CommentListBean bean = new ImageNewsHasCommentEntity.DataBean.CommentListBean();
             commentList.add(bean);
-            adapter = new ImageNewsHasCommentAdapter(R.layout.item_no_comment, commentList,
+            imageNewsHasCommentAdapter = new ImageNewsHasCommentAdapter(R.layout.item_no_comment, commentList,
                     this, imageNewsHasCommentEntity.attachmentPath);
         } else {
-            adapter = new ImageNewsHasCommentAdapter(R.layout.item_news_detail_comment,
+            imageNewsHasCommentAdapter = new ImageNewsHasCommentAdapter(R.layout.item_news_detail_comment,
                     commentList, this, imageNewsHasCommentEntity.attachmentPath);
         }
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(imageNewsHasCommentAdapter);
     }
 
     /**
@@ -268,18 +282,17 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             }
         });
 
-        TextNewsHasCommentAdapter adapter;
         List<TextNewsHasCommentEntity.DataBean.CommentListBean> commentList = textNewsHasCommentEntity.data.commentList;
         if (commentList.size() == 0) {
             TextNewsHasCommentEntity.DataBean.CommentListBean bean = new TextNewsHasCommentEntity.DataBean.CommentListBean();
             commentList.add(bean);
-            adapter = new TextNewsHasCommentAdapter(R.layout.item_no_comment, commentList,
+            textNewsHasCommentAdapter = new TextNewsHasCommentAdapter(R.layout.item_no_comment, commentList,
                     this, textNewsHasCommentEntity.attachmentPath);
         } else {
-            adapter = new TextNewsHasCommentAdapter(R.layout.item_news_detail_comment,
+            textNewsHasCommentAdapter = new TextNewsHasCommentAdapter(R.layout.item_news_detail_comment,
                     commentList, this, textNewsHasCommentEntity.attachmentPath);
         }
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(textNewsHasCommentAdapter);
     }
 
     /**
@@ -338,12 +351,57 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
 
     }
 
-    @OnClick({R.id.iv_back})
+    @OnClick({R.id.iv_back, R.id.tv_right})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
+            case R.id.tv_right:
+                showCommentDialog();
+                break;
+        }
+    }
+
+    private void showCommentDialog() {
+        commentDialog = new BottomSheetDialog(this);
+        View view = View.inflate(this, R.layout.dialog_bottom_comment, null);
+
+        final EditText etContent = view.findViewById(R.id.et_content);
+        ImageView ivSendMessage = view.findViewById(R.id.iv_send_message);
+        ivSendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = etContent.getText().toString().trim();
+                if (TextUtils.isEmpty(content)) {
+                    ToastUtils.showShort("评论内容为空");
+                    return;
+                }
+                mPresenter.comment(newsId, content);
+            }
+        });
+
+        commentDialog.setContentView(view);
+        commentDialog.show();
+    }
+
+    /**
+     * 评论成功后的回调
+     */
+    public void comment() {
+        if (commentDialog != null) {
+            commentDialog.dismiss();
+        }
+        if (isImgNews) {    //如果是图片新闻
+            mPresenter.getImageNewsHasComment(newsId);
+            recyclerView.setFocusable(true);
+//            imageNewsHasCommentAdapter.addData(0, new ImageNewsHasCommentEntity.DataBean.CommentListBean());
+//            imageNewsHasCommentAdapter.notifyItemInserted(0);
+        } else {
+//            textNewsHasCommentAdapter.addData(0, new TextNewsHasCommentEntity.DataBean.CommentListBean());
+//            textNewsHasCommentAdapter.notifyItemInserted(0);
+            mPresenter.getTextNewsHasComment(newsId);
+            recyclerView.setFocusable(true);
         }
     }
 }
