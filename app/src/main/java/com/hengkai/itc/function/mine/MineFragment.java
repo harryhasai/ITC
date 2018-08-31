@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import com.hengkai.itc.function.modify_password.ModifyPasswordActivity;
 import com.hengkai.itc.function.my_comment.MyCommentActivity;
 import com.hengkai.itc.function.my_fund.MyFundActivity;
 import com.hengkai.itc.function.my_reply.MyReplyActivity;
+import com.hengkai.itc.function.my_sign_up.MySignUpActivity;
 import com.hengkai.itc.utils.ImageUtil;
 import com.hengkai.itc.utils.PicassoCircleTransform;
 import com.hengkai.itc.utils.SPUtils;
@@ -65,7 +67,8 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         //注册EventBus
         EventBus.getDefault().register(this);
 
-        initUserInfo();
+        initUserInfo(view);
+
     }
 
     @Override
@@ -76,7 +79,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     /**
      * 初始化页面信息
      */
-    private void initUserInfo() {
+    private void initUserInfo(View view) {
         if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
             ivHeader.setClickable(true);
             tvName.setText(SPUtils.getString(UserInfo.USER_NAME.name(), ""));
@@ -94,6 +97,21 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             tvName.setText("点击登录");
         }
 
+        FrameLayout fl_statistical_analysis = view.findViewById(R.id.fl_statistical_analysis);
+        FrameLayout fl_data_report = view.findViewById(R.id.fl_data_report);
+        boolean isDataReport = SPUtils.getBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+        boolean isStatisticalAnalysis = SPUtils.getBoolean(UserInfo.IS_STATISTICAL_ANALYSIS.name(), false);
+        if (isDataReport) {
+            fl_data_report.setVisibility(View.VISIBLE);
+        } else {
+            fl_data_report.setVisibility(View.GONE);
+        }
+        if (isStatisticalAnalysis) {
+            fl_statistical_analysis.setVisibility(View.VISIBLE);
+        } else {
+            fl_statistical_analysis.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -106,7 +124,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginEvent(LoginEvent loginEvent) { //接收登录成功后的信息
-        initUserInfo();
+        initUserInfo(getView());
     }
 
     @OnClick({R.id.iv_header, R.id.tv_comment, R.id.tv_reply, R.id.tv_sign_up, R.id.fl_data_report,
@@ -124,6 +142,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 startActivity(new Intent(mActivity, MyReplyActivity.class));
                 break;
             case R.id.tv_sign_up:   //我的报名
+                startActivity(new Intent(mActivity, MySignUpActivity.class));
                 break;
             case R.id.fl_my_fund:   //我的基金
                 startActivity(new Intent(mActivity, MyFundActivity.class));
@@ -132,8 +151,10 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 startActivity(new Intent(mActivity, DataReportActivity.class));
                 break;
             case R.id.fl_service_comment:   //服务评价
+                ToastUtils.showShort("敬请期待");
                 break;
             case R.id.fl_statistical_analysis://统计分析
+                ToastUtils.showShort("敬请期待");
                 break;
             case R.id.fl_modify_password://修改密码
                 if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {

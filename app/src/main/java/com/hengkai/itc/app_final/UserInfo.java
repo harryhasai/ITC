@@ -12,6 +12,7 @@ public enum  UserInfo {
     USER_ICON,
     USER_ICON_FIRST_HALF,
     IS_DATA_REPORT,
+    IS_STATISTICAL_ANALYSIS,
     TOKEN,
     IS_LOGIN
 }

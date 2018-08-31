@@ -5,26 +5,33 @@ package com.hengkai.itc.network.entity;
  */
 public class LoginEntity {
 
-
     /**
      * msg : 登录成功
-     * code : 0
-     * data : {"user":{"id":1,"loginName":"admin","password":"2b232ee4b2fb88f1852c918d7c070098b52d8035","plainPassword":null,"salt":"97ad6dd0fd22e803","phone":"123456","email":null,"status":0,"usertype":0,"createTime":"2018-07-20T02:32:35.000+0000","createUser":1,"updateTime":null,"updateUser":null,"isDelete":false,"name":"超级管理员","headPortraitLink":"20180818151346648_724.jpg"}}
+     * code : 1
+     * data : {"user":{"id":1,"loginName":"admin","password":"6064d4074e4ca84503688ae23d05c993eddcbcb1","plainPassword":null,"salt":"4453fbae2c028365","phone":"admin","email":null,"status":0,"usertype":0,"createTime":1532053955000,"createUser":1,"updateTime":null,"updateUser":null,"isDelete":false,"name":"超级管理员","headPortraitLink":"20180821085813233_303.jpg"}}
      * isDataReport : false
+     * DateReport : true
      * attachmentPath : http://192.168.2.157:8084/ITC/file/
-     * token : 5E5ED7E311F7309C88E6B5A0B5C868D7
+     * token : 9CB5BD0E59B605A562B625CF08F292FF
      */
 
     public String msg;
     public int code;
     public DataBean data;
+    /**
+     * 控制数据上报
+     */
     public boolean isDataReport;
+    /**
+     * 控制统计分析
+     */
+    public boolean DateReport;
     public String attachmentPath;
     public String token;
 
     public static class DataBean {
         /**
-         * user : {"id":1,"loginName":"admin","password":"2b232ee4b2fb88f1852c918d7c070098b52d8035","plainPassword":null,"salt":"97ad6dd0fd22e803","phone":"123456","email":null,"status":0,"usertype":0,"createTime":"2018-07-20T02:32:35.000+0000","createUser":1,"updateTime":null,"updateUser":null,"isDelete":false,"name":"超级管理员","headPortraitLink":"20180818151346648_724.jpg"}
+         * user : {"id":1,"loginName":"admin","password":"6064d4074e4ca84503688ae23d05c993eddcbcb1","plainPassword":null,"salt":"4453fbae2c028365","phone":"admin","email":null,"status":0,"usertype":0,"createTime":1532053955000,"createUser":1,"updateTime":null,"updateUser":null,"isDelete":false,"name":"超级管理员","headPortraitLink":"20180821085813233_303.jpg"}
          */
 
         public UserBean user;
@@ -33,20 +40,20 @@ public class LoginEntity {
             /**
              * id : 1
              * loginName : admin
-             * password : 2b232ee4b2fb88f1852c918d7c070098b52d8035
+             * password : 6064d4074e4ca84503688ae23d05c993eddcbcb1
              * plainPassword : null
-             * salt : 97ad6dd0fd22e803
-             * phone : 123456
+             * salt : 4453fbae2c028365
+             * phone : admin
              * email : null
              * status : 0
              * usertype : 0
-             * createTime : 2018-07-20T02:32:35.000+0000
+             * createTime : 1532053955000
              * createUser : 1
              * updateTime : null
              * updateUser : null
              * isDelete : false
              * name : 超级管理员
-             * headPortraitLink : 20180818151346648_724.jpg
+             * headPortraitLink : 20180821085813233_303.jpg
              */
 
             public int id;
@@ -58,7 +65,7 @@ public class LoginEntity {
             public String email;
             public int status;
             public int usertype;
-            public String createTime;
+            public long createTime;
             public int createUser;
             public Object updateTime;
             public Object updateUser;

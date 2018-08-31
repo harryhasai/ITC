@@ -19,12 +19,4 @@
         android:textColor="@color/black2"
         android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:text="更多>>"
-        android:textColor="@color/black3"
-        android:textSize="14sp" />
 </RelativeLayout>

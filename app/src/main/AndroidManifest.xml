@@ -12,7 +12,7 @@
     <application
         android:name=".application.ITCApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_app_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -37,6 +37,9 @@
         <activity android:name=".function.my_fund.MyFundActivity" />
         <activity android:name=".function.my_fund.detail.MyFundDetailActivity" />
         <activity android:name=".function.my_fund_apply_record.FundApplyRecordActivity" />
+        <activity android:name=".function.my_sign_up.MySignUpActivity" />
+        <activity android:name=".function.activity_list.ActivityListActivity" />
+        <activity android:name=".function.activity_list_detail.ActivityListDetailActivity" />
     </application>
 
 </manifest>

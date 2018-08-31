@@ -70,4 +70,12 @@ public class URLFinal {
      * 修改密码
      */
     public static final String MODIFY_PASSWORD = "user/updatePassWord";
+    /**
+     * 资讯 - 活动 - 活动列表
+     */
+    public static final String ACTIVITY_LIST = "activity/selectactivitybytype";
+    /**
+     * 资讯 - 活动 - 活动列表 - 详情
+     */
+    public static final String ACTIVITY_LIST_DETAIL = "activity/todetail";
 }

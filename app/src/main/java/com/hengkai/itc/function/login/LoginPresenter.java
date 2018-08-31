@@ -69,7 +69,8 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
         SPUtils.putString(UserInfo.USER_NAME.name(), loginEntity.data.user.name);
         SPUtils.putString(UserInfo.USER_ICON.name(), loginEntity.attachmentPath + loginEntity.data.user.headPortraitLink);
         SPUtils.putString(UserInfo.USER_ICON_FIRST_HALF.name(), loginEntity.attachmentPath);
-        SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), loginEntity.isDataReport);
+        SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), loginEntity.isDataReport);//数据上报
+        SPUtils.putBoolean(UserInfo.IS_STATISTICAL_ANALYSIS.name(), loginEntity.DateReport);//统计分析
         SPUtils.putString(UserInfo.TOKEN.name(), loginEntity.token);
 
     }

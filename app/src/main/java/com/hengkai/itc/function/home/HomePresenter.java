@@ -43,12 +43,11 @@ public class HomePresenter extends BasePresenter<HomeFragment> {
             @Override
             public void onError(Throwable e) {
                 ToastUtils.showShort("网络连接错误");
-                view.stopRefreshing();
             }
 
             @Override
             public void onComplete() {
-                view.stopRefreshing();
+
             }
         });
     }

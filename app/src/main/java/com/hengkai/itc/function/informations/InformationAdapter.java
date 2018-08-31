@@ -8,10 +8,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.hengkai.itc.R;
 import com.hengkai.itc.custom_view.DividerGridItemDecoration;
+import com.hengkai.itc.function.activity_list.ActivityListActivity;
 import com.hengkai.itc.function.news_list.NewsListActivity;
 import com.hengkai.itc.network.entity.CommonItem;
 import com.hengkai.itc.network.entity.InformationContentEntity;
@@ -94,14 +96,27 @@ public class InformationAdapter extends BaseQuickAdapter<CommonItem, BaseViewHol
         }
         InformationContentAdapter adapter = new InformationContentAdapter(R.layout.item_information_content, data, mActivity);
         rvInformation.setAdapter(adapter);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(mActivity, NewsListActivity.class);
-                intent.putExtra("childID", data.get(position).id);
-                intent.putExtra("name", data.get(position).name);
-                mActivity.startActivity(intent);
-            }
-        });
+        if (helper.getAdapterPosition() == 4) { //如果是活动 , 则跳转到额外的活动列表页面
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    Intent intent = new Intent(mActivity, ActivityListActivity.class);
+                    intent.putExtra("childID", data.get(position).id);
+                    intent.putExtra("name", data.get(position).name);
+                    mActivity.startActivity(intent);
+                }
+            });
+        } else {
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    Intent intent = new Intent(mActivity, NewsListActivity.class);
+                    intent.putExtra("childID", data.get(position).id);
+                    intent.putExtra("name", data.get(position).name);
+                    mActivity.startActivity(intent);
+                }
+            });
+        }
+
     }
 }

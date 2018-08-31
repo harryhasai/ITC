@@ -32,7 +32,7 @@ public class TextNewsNoCommentAdapter extends BaseQuickAdapter<TextNewsNoComment
     protected void convert(BaseViewHolder helper, TextNewsNoCommentEntity.DataBean.NewsListBean item) {
         Picasso.with(mActivity)
                 .load(attachmentPath + item.coverImg)
-                .error(R.mipmap.ic_launcher)
+                .error(R.drawable.ic_news_default_pic)
                 //.transform(new PicassoCircleTransform())
                 //.resize(WindowUtil.dp2px(50, mActivity), WindowUtil.dp2px(50, mActivity))
 //                .centerCrop()

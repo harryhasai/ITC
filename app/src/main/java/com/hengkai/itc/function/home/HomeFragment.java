@@ -1,6 +1,7 @@
 package com.hengkai.itc.function.home;
 
 import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseFragment;
 import com.hengkai.itc.base.presenter.BasePresenter;
@@ -23,6 +25,9 @@ import com.hengkai.itc.function.need_know.NeedKnowActivity;
 import com.hengkai.itc.network.entity.HomeMultiItem;
 import com.hengkai.itc.network.entity.HomeNewsListEntity;
 import com.luck.picture.lib.tools.ScreenUtils;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +43,14 @@ import butterknife.Unbinder;
 public class HomeFragment extends BaseFragment<HomePresenter> {
 
     Unbinder unbinder;
-    @BindView(R.id.swipe_refresh_header)
-    RefreshHeaderView swipeRefreshHeader;
     @BindView(R.id.swipe_target)
     RecyclerView swipeTarget;
-    @BindView(R.id.swipeToLoadLayout)
-    SwipeToLoadLayout swipeToLoadLayout;
 
     private List<HomeMultiItem> mList;
     private HomeAdapter adapter;
     private List<HomeNewsListEntity.DataBean> newsListData;
+    private List<Integer> images;
+
 
     @Override
     protected int setupView() {
@@ -59,9 +62,44 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         initTitleBar(view);
         unbinder = ButterKnife.bind(this, view);
 
+        initImages();
+        setupBanner(view);
         initData();
         initRecyclerView();
 
+    }
+
+    private void initImages() {
+        images = new ArrayList<>();
+        images.add(R.drawable.banner1);
+        images.add(R.drawable.banner2);
+        images.add(R.drawable.banner3);
+        images.add(R.drawable.banner4);
+    }
+
+    /**
+     * 配置轮播图
+     */
+    private void setupBanner(View view) {
+        Banner banner = view.findViewById(R.id.banner);
+        //设置banner样式
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        //设置图片加载器
+        banner.setImageLoader(new BannerImageLoader());
+        //设置图片集合
+        banner.setImages(images);
+        //设置banner动画效果
+        banner.setBannerAnimation(Transformer.Accordion);
+        //设置标题集合（当banner样式有显示title时）
+        //banner.setBannerTitles(titles);
+        //设置自动轮播，默认为true
+        banner.isAutoPlay(true);
+        //设置轮播时间
+        banner.setDelayTime(3500);
+        //设置指示器位置（当banner模式中有指示器时）
+        banner.setIndicatorGravity(BannerConfig.CENTER);
+        //banner设置方法全部调用完毕时最后调用
+        banner.start();
     }
 
     /**
@@ -70,7 +108,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     private void initTitleBar(View view) {
         TextView tvHomeTitleBar = view.findViewById(R.id.tv_home_title_bar);
         int statusBarHeight = ScreenUtils.getStatusBarHeight(mActivity);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tvHomeTitleBar.getLayoutParams();
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) tvHomeTitleBar.getLayoutParams();
         params.height += statusBarHeight;
         tvHomeTitleBar.setLayoutParams(params);
     }
@@ -79,7 +117,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         mList = new ArrayList<>();
         newsListData = new ArrayList<>();
 //        mList.add(new HomeMultiItem(HomeMultiItem.TITLE));
-        mList.add(new HomeMultiItem(HomeMultiItem.BANNER));
+//        mList.add(new HomeMultiItem(HomeMultiItem.BANNER));
         mList.add(new HomeMultiItem(HomeMultiItem.MENU));
         mList.add(new HomeMultiItem(HomeMultiItem.SHORTCUT));
         mList.add(new HomeMultiItem(HomeMultiItem.MORE));
@@ -131,12 +169,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                 }
             }
         });
-        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPresenter.getNewsList();
-            }
-        });
     }
 
     @Override
@@ -152,11 +184,4 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         adapter.refreshNewsListAdapter();//更新新闻列表的数据
     }
 
-    /**
-     * 停止刷新
-     */
-    public void stopRefreshing() {
-        swipeToLoadLayout.setRefreshing(false);
-        swipeToLoadLayout.setLoadingMore(false);
-    }
 }
