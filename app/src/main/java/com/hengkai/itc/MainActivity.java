@@ -10,11 +10,13 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.blankj.utilcode.util.ToastUtils;
 import com.hengkai.itc.app_final.ConstantFinal;
+import com.hengkai.itc.app_final.UserInfo;
 import com.hengkai.itc.base.BaseActivity;
 import com.hengkai.itc.base.presenter.BasePresenter;
 import com.hengkai.itc.function.home.HomeFragment;
 import com.hengkai.itc.function.informations.InformationFragment;
 import com.hengkai.itc.function.mine.MineFragment;
+import com.hengkai.itc.utils.SPUtils;
 import com.hengkai.itc.utils.ScreenUtils;
 import com.jaeger.library.StatusBarUtil;
 
@@ -173,6 +175,11 @@ public class MainActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ConstantFinal.MODIFY_PASSWORD_REQUEST_CODE && resultCode == ConstantFinal.MODIFY_PASSWORD_RESULT_CODE) {
             bottomNavigationBar.selectTab(0);//修改密码成功, 点击返回首页
+            SPUtils.putBoolean(UserInfo.IS_LOGIN.name(), false);
+            SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+            SPUtils.putBoolean(UserInfo.IS_STATISTICAL_ANALYSIS.name(), false);
+            SPUtils.putString(UserInfo.USER_ICON.name(), "");
+            SPUtils.putString(UserInfo.USER_ICON_FIRST_HALF.name(), "");
         }
     }
 }

@@ -15,8 +15,8 @@ public class URLFinal {
      * baseURL
      */
 //    public static final String BASE_URL = "http://192.168.2.18/ITCAPP/";
-    public static final String BASE_URL = "http://192.168.2.157:8084/ITCAPP/";
-//    public static final String BASE_URL = "http://192.168.2.22:8080/ITCAPP/";
+    public static final String BASE_URL = "http://192.168.2.199:8010/ITCAPP/";
+//    public static final String BASE_URL = "http://192.168.2.77:8080/ITCAPP/";
 
     /**
      * 资讯
@@ -78,4 +78,16 @@ public class URLFinal {
      * 资讯 - 活动 - 活动列表 - 详情
      */
     public static final String ACTIVITY_LIST_DETAIL = "activity/todetail";
+    /**
+     * 发送并验证手机号
+     */
+    public static final String SEND_VERIFICATION_CODE = "user/messageUpdatePassword";
+    /**
+     * 验证验证码
+     */
+    public static final String VERIFY_VERIFICATION_CODE = "user/SelectVerify";
+    /**
+     * 通过验证后修改密码
+     */
+    public static final String MODIFY_PASSWORD_VERIFICATION_CODE = "user/updateVerifyPassword";
 }

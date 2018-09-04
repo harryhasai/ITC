@@ -60,6 +60,10 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     //可设置各种属性的TextView(drawable的宽高, 圆角, 边框)
     implementation 'com.ruffian.library:RTextView:1.0.10'
-    //eventbus
+    //EventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
+    //二维码生成库
+    implementation 'com.google.zxing:core:3.3.0'
+    //android-gif-drawable
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
 }

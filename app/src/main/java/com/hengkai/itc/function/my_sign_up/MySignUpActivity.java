@@ -43,6 +43,9 @@ public class MySignUpActivity extends BaseActivity<MySignUpPresenter> {
         StatusBarUtil.setColor(this, getResources().getColor(R.color.title_bar_bg), 0);
         ButterKnife.bind(this);
 
+        tvTitle.setText("我的报名");
+
+
     }
 
     @Override

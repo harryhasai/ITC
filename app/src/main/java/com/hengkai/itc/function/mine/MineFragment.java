@@ -16,6 +16,7 @@ import com.hengkai.itc.app_final.ConstantFinal;
 import com.hengkai.itc.app_final.UserInfo;
 import com.hengkai.itc.base.BaseFragment;
 import com.hengkai.itc.event_bus.LoginEvent;
+import com.hengkai.itc.function.coming_soon.ComingSoonActivity;
 import com.hengkai.itc.function.data_report.DataReportActivity;
 import com.hengkai.itc.function.login.LoginActivity;
 import com.hengkai.itc.function.modify_password.ModifyPasswordActivity;
@@ -54,6 +55,9 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     @BindView(R.id.tv_name)
     TextView tvName;
     Unbinder unbinder;
+    private FrameLayout fl_statistical_analysis;
+    private FrameLayout fl_data_report;
+    private FrameLayout fl_exit_logon;
 
     @Override
     protected int setupView() {
@@ -97,10 +101,12 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             tvName.setText("点击登录");
         }
 
-        FrameLayout fl_statistical_analysis = view.findViewById(R.id.fl_statistical_analysis);
-        FrameLayout fl_data_report = view.findViewById(R.id.fl_data_report);
+        fl_statistical_analysis = view.findViewById(R.id.fl_statistical_analysis);
+        fl_data_report = view.findViewById(R.id.fl_data_report);
+        fl_exit_logon = view.findViewById(R.id.fl_exit_logon);
         boolean isDataReport = SPUtils.getBoolean(UserInfo.IS_DATA_REPORT.name(), false);
         boolean isStatisticalAnalysis = SPUtils.getBoolean(UserInfo.IS_STATISTICAL_ANALYSIS.name(), false);
+        boolean isLogin = SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false);
         if (isDataReport) {
             fl_data_report.setVisibility(View.VISIBLE);
         } else {
@@ -111,7 +117,52 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         } else {
             fl_statistical_analysis.setVisibility(View.GONE);
         }
+        if (isLogin) {
+            fl_exit_logon.setVisibility(View.VISIBLE);
+        } else {
+            fl_exit_logon.setVisibility(View.GONE);
+        }
 
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            boolean isLogin = SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false);
+            boolean isDataReport = SPUtils.getBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+            boolean isStatisticalAnalysis = SPUtils.getBoolean(UserInfo.IS_STATISTICAL_ANALYSIS.name(), false);
+
+            if (isDataReport) {
+                fl_data_report.setVisibility(View.VISIBLE);
+            } else {
+                fl_data_report.setVisibility(View.GONE);
+            }
+            if (isStatisticalAnalysis) {
+                fl_statistical_analysis.setVisibility(View.VISIBLE);
+            } else {
+                fl_statistical_analysis.setVisibility(View.GONE);
+            }
+            if (isLogin) {
+                fl_exit_logon.setVisibility(View.VISIBLE);
+                ivHeader.setClickable(true);
+                tvName.setText(SPUtils.getString(UserInfo.USER_NAME.name(), ""));
+                tvName.setClickable(false);
+                Picasso.with(mActivity)
+                        .load(SPUtils.getString(UserInfo.USER_ICON.name(), ""))
+                        .error(R.drawable.ic_default_user_header)
+                        .transform(new PicassoCircleTransform())
+                        .resize(ConvertUtils.dp2px(65), ConvertUtils.dp2px(65))
+                        .centerCrop()
+                        .into(ivHeader);
+            } else {
+                fl_exit_logon.setVisibility(View.GONE);
+                ivHeader.setClickable(false);
+                ivHeader.setImageResource(R.drawable.ic_default_user_header);
+                tvName.setClickable(true);
+                tvName.setText("点击登录");
+            }
+        }
     }
 
     @Override
@@ -136,13 +187,25 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 changeHeaderImage();
                 break;
             case R.id.tv_comment:   //我的评论
-                startActivity(new Intent(mActivity, MyCommentActivity.class));
+                if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
+                    startActivity(new Intent(mActivity, MyCommentActivity.class));
+                } else {
+                    ToastUtils.showShort("您还未登录");
+                }
                 break;
             case R.id.tv_reply:     //回复我的
-                startActivity(new Intent(mActivity, MyReplyActivity.class));
+                if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
+                    startActivity(new Intent(mActivity, MyReplyActivity.class));
+                } else {
+                    ToastUtils.showShort("您还未登录");
+                }
                 break;
             case R.id.tv_sign_up:   //我的报名
-                startActivity(new Intent(mActivity, MySignUpActivity.class));
+                if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
+                    startActivity(new Intent(mActivity, MySignUpActivity.class));
+                } else {
+                    ToastUtils.showShort("您还未登录");
+                }
                 break;
             case R.id.fl_my_fund:   //我的基金
                 startActivity(new Intent(mActivity, MyFundActivity.class));
@@ -151,10 +214,10 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 startActivity(new Intent(mActivity, DataReportActivity.class));
                 break;
             case R.id.fl_service_comment:   //服务评价
-                ToastUtils.showShort("敬请期待");
+                startActivity(new Intent(mActivity, ComingSoonActivity.class));
                 break;
             case R.id.fl_statistical_analysis://统计分析
-                ToastUtils.showShort("敬请期待");
+                startActivity(new Intent(mActivity, ComingSoonActivity.class));
                 break;
             case R.id.fl_modify_password://修改密码
                 if (SPUtils.getBoolean(UserInfo.IS_LOGIN.name(), false)) {
@@ -185,6 +248,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             public void onClick(DialogInterface dialog, int which) {
                 SPUtils.putBoolean(UserInfo.IS_LOGIN.name(), false);
                 SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+                SPUtils.putBoolean(UserInfo.IS_STATISTICAL_ANALYSIS.name(), false);
                 SPUtils.putString(UserInfo.USER_ID.name(), "0");
                 SPUtils.putString(UserInfo.USER_ICON.name(), "");
 

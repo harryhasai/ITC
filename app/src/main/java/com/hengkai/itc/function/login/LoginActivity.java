@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseActivity;
 import com.hengkai.itc.base.presenter.BasePresenter;
+import com.hengkai.itc.function.forget_password.ForgetPasswordActivity;
 import com.hengkai.itc.utils.EditTextFilterUtil;
 import com.hengkai.itc.utils.ScreenUtils;
 import com.jaeger.library.StatusBarUtil;
@@ -124,6 +125,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements EasyP
                 easyPermission();
                 break;
             case R.id.tv_forget:
+                startActivity(new Intent(this, ForgetPasswordActivity.class));
                 break;
         }
     }

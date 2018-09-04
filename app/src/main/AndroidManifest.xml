@@ -40,6 +40,9 @@
         <activity android:name=".function.my_sign_up.MySignUpActivity" />
         <activity android:name=".function.activity_list.ActivityListActivity" />
         <activity android:name=".function.activity_list_detail.ActivityListDetailActivity" />
+        <activity android:name=".function.activity_list_detail.sign_up.SignUpActivity" />
+        <activity android:name=".function.coming_soon.ComingSoonActivity" />
+        <activity android:name=".function.forget_password.ForgetPasswordActivity" />
     </application>
 
 </manifest>

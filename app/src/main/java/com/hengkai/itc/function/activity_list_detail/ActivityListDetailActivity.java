@@ -1,5 +1,6 @@
 package com.hengkai.itc.function.activity_list_detail;
 
+import android.content.Intent;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,9 +10,9 @@ import android.widget.TextView;
 
 import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseActivity;
+import com.hengkai.itc.function.activity_list_detail.sign_up.SignUpActivity;
 import com.hengkai.itc.network.entity.ActivityListDetailImageEntity;
 import com.hengkai.itc.network.entity.ActivityListDetailTextEntity;
-import com.hengkai.itc.network.entity.ImageNewsNoCommentEntity;
 import com.hengkai.itc.utils.DateFormatUtils;
 import com.jaeger.library.StatusBarUtil;
 import com.squareup.picasso.Picasso;
@@ -42,6 +43,10 @@ public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailP
     TextView tvActivityTime;
     @BindView(R.id.ll_content)
     LinearLayout llContent;
+    /**
+     * 当前活动的ID
+     */
+    private int activityID;
 
     @Override
     protected int setupView() {
@@ -57,7 +62,7 @@ public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailP
         tvTitle.setText("活动详情");
         tvRight.setText("报名");
 
-        int activityID = getIntent().getIntExtra("activityID", 0);
+        activityID = getIntent().getIntExtra("activityID", 0);
         boolean isImgActivity = getIntent().getBooleanExtra("isImgActivity", false);
         if (isImgActivity) {
             //图片活动
@@ -81,7 +86,9 @@ public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailP
                 finish();
                 break;
             case R.id.tv_right:
-
+                Intent intent = new Intent(this, SignUpActivity.class);
+                intent.putExtra("activityID", activityID);
+                startActivity(intent);
                 break;
         }
     }

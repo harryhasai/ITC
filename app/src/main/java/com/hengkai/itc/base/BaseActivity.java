@@ -89,6 +89,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends BaseActivity
                 dialog.dismiss();
                 SPUtils.putBoolean(UserInfo.IS_LOGIN.name(), false);
                 SPUtils.putBoolean(UserInfo.IS_DATA_REPORT.name(), false);
+                SPUtils.putString(UserInfo.USER_ICON.name(), "");
+                SPUtils.putString(UserInfo.USER_ICON_FIRST_HALF.name(), "");
                 //看需求, 是否需要发送消息在重新登录后刷新当前列表的数据, 这里暂时先不添加了
             }
         }).setNegativeButton("否", new DialogInterface.OnClickListener() {
