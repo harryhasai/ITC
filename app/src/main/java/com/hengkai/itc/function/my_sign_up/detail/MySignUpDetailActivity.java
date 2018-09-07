@@ -88,6 +88,9 @@ public class MySignUpDetailActivity extends BaseActivity<MySignUpDetailPresenter
                 break;
             case R.id.tv_right:
                 // TODO: 2018/9/7 跳转查询报名名单
+                Intent intent = new Intent(this, ListOfPersonActivity.class);
+                intent.putExtra("activityID", activityID);
+                startActivity(intent);
                 break;
         }
     }

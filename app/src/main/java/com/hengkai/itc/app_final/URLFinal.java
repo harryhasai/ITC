@@ -94,4 +94,12 @@ public class URLFinal {
      * 通过验证后修改密码
      */
     public static final String MODIFY_PASSWORD_VERIFICATION_CODE = "user/updateVerifyPassword";
+    /**
+     * 查询当前用户的报名情况
+     */
+    public static final String LIST_OF_PERSON = "activity/selectapply";
+    /**
+     * 删除报名中的某一项
+     */
+    public static final String DELETE_LIST_OF_PERSON = "activity/deleteparticipants";
 }

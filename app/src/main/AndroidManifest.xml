@@ -44,6 +44,7 @@
         <activity android:name=".function.coming_soon.ComingSoonActivity" />
         <activity android:name=".function.forget_password.ForgetPasswordActivity" />
         <activity android:name=".function.my_sign_up.detail.MySignUpDetailActivity" />
+        <activity android:name=".function.my_sign_up.detail.ListOfPersonActivity" />
     </application>
 
 </manifest>
