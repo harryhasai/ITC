@@ -1,6 +1,7 @@
 package com.hengkai.itc.function.my_fund.detail;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -47,8 +48,8 @@ public class MyFundDetailActivity extends BaseActivity<MyFundDetailPresenter> {
     /**
      * 报名的弹窗
      */
-    private AlertDialog signUpDailog;
     private int fundID;
+    private AlertDialog signUpDialog;
 
     @Override
     protected int setupView() {
@@ -79,6 +80,7 @@ public class MyFundDetailActivity extends BaseActivity<MyFundDetailPresenter> {
             Picasso.with(this)
                     .load(SPUtils.getString(UserInfo.USER_ICON_FIRST_HALF.name(), "") + bean.coverImg)
                     .error(R.drawable.ic_news_default_pic)
+                    .placeholder(R.drawable.ic_news_default_pic)
 //                        .transform(new PicassoCircleTransform())
 //                        .resize(ConvertUtils.dp2px(40), ConvertUtils.dp2px(40))
 //                        .centerCrop()
@@ -111,26 +113,21 @@ public class MyFundDetailActivity extends BaseActivity<MyFundDetailPresenter> {
      */
     private void showSignUpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = View.inflate(this, R.layout.dialog_fund, null);
-        final EditText etContent = view.findViewById(R.id.et_content);
-        Button btnCommit = view.findViewById(R.id.btn_commit);
-        builder.setView(view);
-        signUpDailog = builder.create();
-
-        etContent.setFilters(EditTextFilterUtil.addSpaceFiltering());
-        btnCommit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = etContent.getText().toString().trim();
-                if (TextUtils.isEmpty(content)) {
-                    ToastUtils.showShort("申请内容不能为空");
-                    return;
-                }
-                mPresenter.signUp(fundID, content);
-            }
-        });
-
-        signUpDailog.show();
+        builder.setMessage("确认报名该基金吗?").setTitle("基金报名")
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.signUp(fundID);
+                    }
+                });
+        signUpDialog = builder.create();
+        signUpDialog.show();
 
     }
 
@@ -138,7 +135,7 @@ public class MyFundDetailActivity extends BaseActivity<MyFundDetailPresenter> {
      * 报名成功后调用此方法
      */
     public void signUpSuccess() {
-        signUpDailog.dismiss();
         ToastUtils.showShort("报名成功");
+        signUpDialog.dismiss();
     }
 }

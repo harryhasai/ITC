@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:paddingEnd="5dp"
+    android:paddingStart="9dp"
+    android:paddingTop="7dp"
+    tools:ignore="HardcodedText">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/ic_activity_list_bg">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="活动标题活动标题活动标题活动标题活动标题"
+            android:textColor="@color/black2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_margin="15dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="1dp"
+            android:lines="2"
+            android:text="活动内容简介活动内容简介活动内容简介活动内容简介活动内容简介活动内容简介"
+            android:textColor="@color/black4"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="15dp"
+            android:text="日期(报名的日期)"
+            android:textColor="@color/black4"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_status"
+        android:layout_width="55dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="status"
+        android:src="@drawable/ic_activity_list_running" />
+
+</FrameLayout>

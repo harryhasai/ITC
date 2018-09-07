@@ -1,6 +1,5 @@
 package com.hengkai.itc.function.my_fund_apply_record;
 
-import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,16 +10,11 @@ import android.widget.TextView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseActivity;
 import com.hengkai.itc.custom_view.refreshing.LoadMoreFooterView;
 import com.hengkai.itc.custom_view.refreshing.RefreshHeaderView;
-import com.hengkai.itc.function.news_detail.NewsDetailActivity;
-import com.hengkai.itc.function.news_list.NewsListActivity;
-import com.hengkai.itc.function.news_list.NewsListAdapter;
 import com.hengkai.itc.network.entity.FundApplyRecordEntity;
-import com.hengkai.itc.network.entity.HomeNewsListEntity;
 import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -89,7 +83,6 @@ public class FundApplyRecordActivity extends BaseActivity<FundApplyRecordPresent
         swipeTarget.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FundApplyRecordAdapter(R.layout.item_fund_apply_record, mList);
         swipeTarget.setAdapter(adapter);
-        swipeTarget.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override

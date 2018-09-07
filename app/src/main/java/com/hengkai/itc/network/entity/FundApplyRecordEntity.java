@@ -9,9 +9,9 @@ public class FundApplyRecordEntity {
 
     /**
      * msg : 查询成功
-     * code : 0
-     * data : [{"createtime":1535354444000,"applycontent":"sdasdasd","fund_id":74,"id":7,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1535190063000,"applycontent":"大发发","fund_id":76,"id":6,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1534901209000,"applycontent":"23323232323","fund_id":76,"id":5,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"examineContent":"344444","createtime":1534128417000,"examineuser":"超级管理员","applycontent":"2","aggreement":"1","fund_id":76,"id":1,"createuser":"超级管理员","updatetime":1534992419000,"applyuser":"超级管理员","status":"2","updateuser":2},{"applycontent":"23323232323","fund_id":76,"id":4,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"}]
-     * count : 5
+     * code : 1
+     * data : [{"createtime":1535955571000,"fund_id":77,"fundname":"322","id":13,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1535708146000,"applycontent":"撒旦法","fund_id":79,"fundname":"ew34323232","id":12,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1535708032000,"applycontent":"发","fund_id":78,"fundname":"wewerr","id":11,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1535708009000,"applycontent":"发大水发","fund_id":79,"fundname":"ew34323232","id":10,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"examineContent":"第三方","createtime":1535707761000,"applycontent":"士大夫","fund_id":80,"fundname":"sdafd dsaf","id":9,"createuser":"超级管理员","applyuser":"超级管理员","status":"1"},{"createtime":1535444210000,"applycontent":"Fsdaaaesfsdfas","aggreement":0,"fund_id":113,"id":8,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1535354444000,"applycontent":"sdasdasd","aggreement":0,"fund_id":74,"fundname":"1","id":7,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1535190063000,"applycontent":"大发发","aggreement":0,"fund_id":76,"fundname":"11大发","id":6,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1534901209000,"applycontent":"23323232323","aggreement":0,"fund_id":76,"fundname":"11大发","id":5,"createuser":"超级管理员","applyuser":"超级管理员","status":"2"},{"createtime":1534128417000,"applycontent":"2","fund_id":76,"fundname":"11大发","createuser":"超级管理员","applyuser":"超级管理员","examineContent":"344444","examineuser":"超级管理员","aggreement":1,"id":1,"updatetime":1534992419000,"status":"1","updateuser":2}]
+     * count : 11
      */
 
     public String msg;
@@ -21,30 +21,32 @@ public class FundApplyRecordEntity {
 
     public static class DataBean {
         /**
-         * createtime : 1535354444000
-         * applycontent : sdasdasd
-         * fund_id : 74
-         * id : 7
+         * createtime : 1535955571000
+         * fund_id : 77
+         * fundname : 322
+         * id : 13
          * createuser : 超级管理员
          * applyuser : 超级管理员
          * status : 2
-         * examineContent : 344444
+         * applycontent : 撒旦法
+         * examineContent : 第三方
+         * aggreement : 0
          * examineuser : 超级管理员
-         * aggreement : 1
          * updatetime : 1534992419000
          * updateuser : 2
          */
 
         public long createtime;
-        public String applycontent;
         public int fund_id;
+        public String fundname;
         public int id;
         public String createuser;
         public String applyuser;
         public String status;
+        public String applycontent;
         public String examineContent;
+        public int aggreement;
         public String examineuser;
-        public String aggreement;
         public long updatetime;
         public int updateuser;
     }

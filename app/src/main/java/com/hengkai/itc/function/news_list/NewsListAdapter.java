@@ -32,6 +32,7 @@ public class NewsListAdapter extends BaseQuickAdapter<HomeNewsListEntity.DataBea
         Picasso.with(mActivity)
                 .load(attachmentPath + item.coverImg)
                 .error(R.drawable.ic_news_default_pic)
+                .placeholder(R.drawable.ic_news_default_pic)
                 //.transform(new PicassoCircleTransform())
                 //.resize(WindowUtil.dp2px(50, mActivity), WindowUtil.dp2px(50, mActivity))
 //                .centerCrop()

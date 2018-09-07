@@ -41,12 +41,11 @@ public class MyFundDetailModel extends BaseModel {
                 .subscribe(observer);
     }
 
-    public void signUp(int fundID, String applyContent, Observer<CommonEntity> observer) {
+    public void signUp(int fundID, Observer<CommonEntity> observer) {
         Map<String, String> params = new HashMap<>();
 
         params.put("applyUserid", SPUtils.getString(UserInfo.USER_ID.name(), ""));
         params.put("fundId", String.valueOf(fundID));
-        params.put("applyContent", applyContent);
 
         service.signUp(URLFinal.MY_FUND_DETAIL_SIGN_UP, params)
                 .subscribeOn(Schedulers.io())

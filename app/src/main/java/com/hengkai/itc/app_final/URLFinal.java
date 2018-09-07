@@ -75,6 +75,10 @@ public class URLFinal {
      */
     public static final String ACTIVITY_LIST = "activity/selectactivitybytype";
     /**
+     * 我的活动报名列表
+     */
+    public static final String MY_SIGN_UP_LIST = "activity/selectactivitylistbyuser";
+    /**
      * 资讯 - 活动 - 活动列表 - 详情
      */
     public static final String ACTIVITY_LIST_DETAIL = "activity/todetail";

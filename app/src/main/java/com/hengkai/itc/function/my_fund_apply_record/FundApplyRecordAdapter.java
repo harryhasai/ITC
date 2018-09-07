@@ -3,6 +3,7 @@ package com.hengkai.itc.function.my_fund_apply_record;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -18,8 +19,11 @@ import java.util.List;
  */
 public class FundApplyRecordAdapter extends BaseQuickAdapter<FundApplyRecordEntity.DataBean, BaseViewHolder> {
 
+    private List<FundApplyRecordEntity.DataBean> data;
+
     public FundApplyRecordAdapter(int layoutResId, @Nullable List<FundApplyRecordEntity.DataBean> data) {
         super(layoutResId, data);
+        this.data = data;
     }
 
     @Override
@@ -27,42 +31,50 @@ public class FundApplyRecordAdapter extends BaseQuickAdapter<FundApplyRecordEnti
         String status = "";
         switch (item.status) {
             case "0": //0已拒绝，1已通过，2未审核
-                status = "已拒绝";
-                displayOrHidden(helper, true);
+                status = "审核未通过";
+                helper.setBackgroundRes(R.id.tv_status, R.drawable.shape_fund_apply_record_gray);
                 break;
             case "1":
-                status = "已通过";
-                displayOrHidden(helper, true);
+                status = "审核通过";
+                helper.setBackgroundRes(R.id.tv_status, R.drawable.shape_fund_apply_record_green);
                 break;
             case "2":
-                status = "未审核";
-                displayOrHidden(helper, false);
+                status = "审核中";
+                helper.setBackgroundRes(R.id.tv_status, R.drawable.shape_fund_apply_record_yellow);
                 break;
         }
-        String time = DateFormatUtils.getFormatedDateTime(DateFormatUtils.PATTERN_1, item.updatetime);
-        helper.setText(R.id.tv_apply_user, item.applyuser)
+        String updateTime = DateFormatUtils.getFormatedDateTime(DateFormatUtils.PATTERN_3, item.updatetime);
+        String time = DateFormatUtils.getFormatedDateTime(DateFormatUtils.PATTERN_3, item.createtime);
+        helper.setText(R.id.tv_time, time)
                 .setText(R.id.tv_status, status)
-                .setText(R.id.tv_apply_content, item.applycontent)
-                .setText(R.id.tv_examine_user, item.examineuser)
-                .setText(R.id.tv_examine_time, time)
-                .setText(R.id.tv_examine_content, item.examineContent);
-    }
+                .setText(R.id.tv_fund_title, item.fundname);
 
-    private void displayOrHidden(BaseViewHolder helper, boolean isDisplay) {
-        TextView tv_examine_user = helper.getView(R.id.tv_examine_user);
-        TextView tv_examine_time = helper.getView(R.id.tv_examine_time);
-        TextView tv_examine_content = helper.getView(R.id.tv_examine_content);
-        View view_line = helper.getView(R.id.view_line);
-        if (isDisplay) {
-            tv_examine_user.setVisibility(View.VISIBLE);
-            tv_examine_time.setVisibility(View.VISIBLE);
-            tv_examine_content.setVisibility(View.VISIBLE);
-            view_line.setVisibility(View.VISIBLE);
+        if (TextUtils.isEmpty(item.examineuser)) {
+            helper.setText(R.id.tv_examine_user, "审核人: 暂无");
         } else {
-            tv_examine_user.setVisibility(View.GONE);
-            tv_examine_time.setVisibility(View.GONE);
-            tv_examine_content.setVisibility(View.GONE);
-            view_line.setVisibility(View.GONE);
+            helper.setText(R.id.tv_examine_user, "审核人: " + item.examineuser);
+        }
+        if (item.updatetime == 0) {
+            helper.setText(R.id.tv_examine_time, "审核时间: 暂无");
+        } else {
+            helper.setText(R.id.tv_examine_time, "审核时间: " + updateTime);
+        }
+        if (TextUtils.isEmpty(item.examineContent)) {
+            helper.setText(R.id.tv_examine_content, "审核内容: 暂无");
+        } else {
+            helper.setText(R.id.tv_examine_content, "\u3000\u3000" + item.examineContent);
+        }
+
+        ImageView ivLine = helper.getView(R.id.iv_line);
+        if (helper.getAdapterPosition() == data.size() - 1) {
+            ivLine.setVisibility(View.INVISIBLE);
+        } else {
+            ivLine.setVisibility(View.VISIBLE);
+        }
+        if (helper.getAdapterPosition() == 0) {
+            ImageView ivLine1 = helper.getView(R.id.iv_line1);
+            ivLine1.setVisibility(View.INVISIBLE);
         }
     }
+
 }

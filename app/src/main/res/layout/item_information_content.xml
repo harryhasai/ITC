@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tv_content_name"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp"
-    android:text="园区通知"
-    android:textColor="@color/black4"
-    android:clickable="true"
     android:background="@drawable/item_select_bg"
-    tools:ignore="HardcodedText"
-    android:focusable="true" />
+    android:padding="5dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/tv_content_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:background="@drawable/shape_information_line3"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp"
+        android:text="园区通知"
+        android:textColor="@color/black4"
+        android:textSize="13sp" />
+</FrameLayout>

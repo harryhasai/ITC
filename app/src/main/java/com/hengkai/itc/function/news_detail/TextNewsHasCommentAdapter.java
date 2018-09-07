@@ -40,7 +40,8 @@ public class TextNewsHasCommentAdapter extends BaseQuickAdapter<TextNewsHasComme
         if (tvNoComment == null) {
             Picasso.with(mActivity)
                     .load(attachmentPath + item.commentImg)
-                    .error(R.mipmap.ic_launcher)
+                    .error(R.drawable.ic_news_default_pic)
+                    .placeholder(R.drawable.ic_news_default_pic)
                     .transform(new PicassoCircleTransform())
                     .resize(ConvertUtils.dp2px(50), ConvertUtils.dp2px(50))
                     .centerCrop()

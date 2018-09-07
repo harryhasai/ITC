@@ -149,7 +149,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
                 Picasso.with(this)
                         .load(imageNewsHasCommentEntity.attachmentPath + bean.imgUrl)
                         .error(R.drawable.ic_news_default_pic)
-//                        .transform(new PicassoCircleTransform())
+                        .placeholder(R.drawable.ic_news_default_pic)
 //                        .resize(ConvertUtils.dp2px(40), ConvertUtils.dp2px(40))
 //                        .centerCrop()
                         .into(ivNewsDetailImage);
@@ -205,7 +205,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
                 Picasso.with(this)
                         .load(imageNewsNoCommentEntity.attachmentPath + bean.imgUrl)
                         .error(R.drawable.ic_news_default_pic)
-//                        .transform(new PicassoCircleTransform())
+                        .placeholder(R.drawable.ic_news_default_pic)
 //                        .resize(ConvertUtils.dp2px(40), ConvertUtils.dp2px(40))
 //                        .centerCrop()
                         .into(ivNewsDetailImage);
@@ -260,7 +260,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             Picasso.with(this)
                     .load(textNewsHasCommentEntity.attachmentPath + textNewsHasCommentEntity.data.coverImg)
                     .error(R.drawable.ic_news_default_pic)
-//                        .transform(new PicassoCircleTransform())
+                    .placeholder(R.drawable.ic_news_default_pic)
 //                        .resize(ConvertUtils.dp2px(40), ConvertUtils.dp2px(40))
 //                        .centerCrop()
                     .into(ivNewsDetailImage);
@@ -312,7 +312,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             Picasso.with(this)
                     .load(textNewsNoCommentEntity.attachmentPath + textNewsNoCommentEntity.data.coverImg)
                     .error(R.drawable.ic_news_default_pic)
-//                        .transform(new PicassoCircleTransform())
+                    .placeholder(R.drawable.ic_news_default_pic)
 //                        .resize(ConvertUtils.dp2px(40), ConvertUtils.dp2px(40))
 //                        .centerCrop()
                     .into(ivNewsDetailImage);

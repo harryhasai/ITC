@@ -27,20 +27,21 @@ public class InformationContentAdapter extends BaseQuickAdapter<InformationEntit
 
     @Override
     protected void convert(BaseViewHolder helper, InformationEntity item) {
-        helper.setText(R.id.tv_content_name, item.name);
-        TextView tvContentName = helper.getView(R.id.tv_content_name);
-        if ((helper.getAdapterPosition() + 1) % 3 == 0) {
-            if (TextUtils.isEmpty(item.name)) {
-                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line1));
-            } else {
-                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.selector_item_information_line1));
-            }
-        } else {
-            if (TextUtils.isEmpty(item.name)) {
-                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line2));
-            } else {
-                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.selector_item_information_line2));
-            }
-        }
+        helper.setText(R.id.tv_content_name, item.name)
+                .addOnClickListener(R.id.tv_content_name);
+//        TextView tvContentName = helper.getView(R.id.tv_content_name);
+//        if ((helper.getAdapterPosition() + 1) % 3 == 0) {
+//            if (TextUtils.isEmpty(item.name)) {
+//                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line1));
+//            } else {
+//                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.selector_item_information_line1));
+//            }
+//        } else {
+//            if (TextUtils.isEmpty(item.name)) {
+//                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.shape_information_line2));
+//            } else {
+//                tvContentName.setBackground(mActivity.getResources().getDrawable(R.drawable.selector_item_information_line2));
+//            }
+//        }
     }
 }

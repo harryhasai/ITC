@@ -1,4 +1,4 @@
-package com.hengkai.itc.function.activity_list_detail;
+package com.hengkai.itc.function.my_sign_up.detail;
 
 import android.content.Intent;
 import android.text.Html;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.hengkai.itc.R;
 import com.hengkai.itc.base.BaseActivity;
+import com.hengkai.itc.function.activity_list_detail.ActivityListDetailPresenter;
 import com.hengkai.itc.function.activity_list_detail.sign_up.SignUpActivity;
 import com.hengkai.itc.network.entity.ActivityListDetailImageEntity;
 import com.hengkai.itc.network.entity.ActivityListDetailTextEntity;
@@ -25,9 +26,9 @@ import butterknife.OnClick;
 
 /**
  * Created by Harry on 2018/8/31.
- * 资讯 - 活动列表详情
+ * 我的报名 - 活动列表详情
  */
-public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailPresenter> {
+public class MySignUpDetailActivity extends BaseActivity<MySignUpDetailPresenter> {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -50,7 +51,7 @@ public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailP
 
     @Override
     protected int setupView() {
-        return R.layout.activity_activity_list_detail;
+        return R.layout.activity_my_sign_up_detail;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailP
         ButterKnife.bind(this);
 
         tvTitle.setText("活动详情");
-        tvRight.setText("报名");
+        tvRight.setText("查询");
 
         activityID = getIntent().getIntExtra("activityID", 0);
         boolean isImgActivity = getIntent().getBooleanExtra("isImgActivity", false);
@@ -75,8 +76,8 @@ public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailP
     }
 
     @Override
-    protected ActivityListDetailPresenter bindPresenter() {
-        return new ActivityListDetailPresenter();
+    protected MySignUpDetailPresenter bindPresenter() {
+        return new MySignUpDetailPresenter();
     }
 
     @OnClick({R.id.iv_back, R.id.tv_right})
@@ -86,9 +87,7 @@ public class ActivityListDetailActivity extends BaseActivity<ActivityListDetailP
                 finish();
                 break;
             case R.id.tv_right:
-                Intent intent = new Intent(this, SignUpActivity.class);
-                intent.putExtra("activityID", activityID);
-                startActivity(intent);
+                // TODO: 2018/9/7 跳转查询报名名单
                 break;
         }
     }

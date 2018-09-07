@@ -40,6 +40,7 @@ public class MyReplyAdapter extends BaseQuickAdapter<MyReplyEntity.DataBean, Bas
             Picasso.with(mActivity)
                     .load(SPUtils.getString(UserInfo.USER_ICON_FIRST_HALF.name(), "") + item.replyImg)
                     .error(R.drawable.ic_default_user_header)
+                    .placeholder(R.drawable.ic_news_default_pic)
                     .transform(new PicassoCircleTransform())
                     .resize(ConvertUtils.dp2px(40), ConvertUtils.dp2px(40))
                     .centerCrop()

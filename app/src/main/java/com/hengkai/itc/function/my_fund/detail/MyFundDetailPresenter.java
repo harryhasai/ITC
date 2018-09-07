@@ -54,8 +54,8 @@ public class MyFundDetailPresenter extends BasePresenter<MyFundDetailActivity> {
         });
     }
 
-    public void signUp(int fundID, String applyContent) {
-        model.signUp(fundID, applyContent, new Observer<CommonEntity>() {
+    public void signUp(int fundID) {
+        model.signUp(fundID, new Observer<CommonEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
 
