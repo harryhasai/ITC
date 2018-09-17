@@ -47,6 +47,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
 
             @Override
             public void onError(Throwable e) {
+                view.dismissDialog();
                 ToastUtils.showShort("网络连接错误");
             }
 

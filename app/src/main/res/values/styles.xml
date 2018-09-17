@@ -9,6 +9,14 @@
         <item name="colorAccent">@color/seagreen</item>
     </style>
 
+    <!-- 雪花页面样式 -->
+    <style name="AppTheme.NoActionBarWithBackGround">
+        <item name="windowActionBar">false</item><!--取消Actionbar-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item> <!--设置全屏-->
+        <item name="android:windowBackground">@drawable/app_splash</item> <!--设置背景-->
+    </style>
+
     <style name="LoadingDialog" parent="Theme.AppCompat.Dialog">
         <!--去除边框-->
         <item name="android:windowFrame">@null</item>
