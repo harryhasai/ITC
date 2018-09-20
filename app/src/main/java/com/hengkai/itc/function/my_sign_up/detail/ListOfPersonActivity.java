@@ -100,12 +100,17 @@ public class ListOfPersonActivity extends BaseActivity {
     }
 
     private void setupList(String applyName, String applyPhone) {
-        List<String> nameList = new ArrayList<>(Arrays.asList(applyName.split(",")));
-        List<String> phoneList = new ArrayList<>(Arrays.asList(applyPhone.split(",")));
+        final List<String> nameList = new ArrayList<>(Arrays.asList(applyName.split(",")));
+        final List<String> phoneList = new ArrayList<>(Arrays.asList(applyPhone.split(",")));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ListOfPersonAdapter(nameList, phoneList, this, activityID));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.setLayoutManager(new LinearLayoutManager(ListOfPersonActivity.this));
+                recyclerView.setAdapter(new ListOfPersonAdapter(nameList, phoneList, ListOfPersonActivity.this, activityID));
+                recyclerView.addItemDecoration(new DividerItemDecoration(ListOfPersonActivity.this, DividerItemDecoration.VERTICAL));
+            }
+        });
     }
 
     @Override

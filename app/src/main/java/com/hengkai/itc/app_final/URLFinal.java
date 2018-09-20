@@ -15,8 +15,10 @@ public class URLFinal {
      * baseURL
      */
 //    public static final String BASE_URL = "http://192.168.2.18/ITCAPP/";
-    public static final String BASE_URL = "http://192.168.2.199:8010/ITCAPP/";
+    public static final String BASE_URL = "http://192.168.2.199:8080/ITCAPP/";
 //    public static final String BASE_URL = "http://192.168.2.77:8080/ITCAPP/";
+
+    public static final String QR_CODE_URL = "http://192.168.2.199:8080/ITCAPP/activity/tohdbm?";
 
     /**
      * 资讯

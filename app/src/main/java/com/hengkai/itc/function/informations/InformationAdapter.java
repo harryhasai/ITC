@@ -51,6 +51,7 @@ public class InformationAdapter extends BaseQuickAdapter<CommonItem, BaseViewHol
 
         RecyclerView rvInformation = helper.getView(R.id.rv_information);
         rvInformation.setLayoutManager(new GridLayoutManager(mActivity, 3));
+        rvInformation.setFocusable(false);
 
         final List<InformationEntity> data = new ArrayList<>();
         switch (helper.getAdapterPosition()) {

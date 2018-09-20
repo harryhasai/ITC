@@ -25,6 +25,7 @@ public class InformationFragment extends BaseFragment<InformationPresenter> {
     private String[] names = {"园区", "企业", "高校", "机构", "活动"};
     private List<InformationContentEntity.DataBean> mList;
     private InformationAdapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected int setupView() {
@@ -58,7 +59,7 @@ public class InformationFragment extends BaseFragment<InformationPresenter> {
             data.add(new CommonItem(names[i]));
         }
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         adapter = new InformationAdapter(R.layout.item_information, data, mActivity, mList);
         recyclerView.setAdapter(adapter);
@@ -73,5 +74,11 @@ public class InformationFragment extends BaseFragment<InformationPresenter> {
         mList.clear();
         mList.addAll(list);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        recyclerView.setFocusable(false);
     }
 }

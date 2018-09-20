@@ -66,4 +66,6 @@ dependencies {
     implementation 'com.google.zxing:core:3.3.0'
     //android-gif-drawable
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
+    // ActionSheet
+    implementation 'com.baoyz.actionsheet:library:1.1.7'
 }
