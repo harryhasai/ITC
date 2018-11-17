@@ -1,11 +1,17 @@
 package com.hengkai.itc.function.home;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +37,7 @@ import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -149,7 +156,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                         startActivity(new Intent(mActivity, CommonQuestionActivity.class));
                         break;
                     case R.id.ll_apply://入驻申请
-                        ToastUtils.showShort("入驻申请");
+                        apply();
                         break;
                     case R.id.ll_accelerator://企业加速器
                         ToastUtils.showShort("企业加速器");
@@ -167,6 +174,31 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                         ToastUtils.showShort("查看更多");
                         break;
                 }
+            }
+        });
+    }
+
+    // 入住申请
+    private void apply(){
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mActivity) ;
+        dialogBuilder.create() ;
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.layout_pop_qurest, null);
+        dialogBuilder.setView(view) ;
+        final Dialog dialog = dialogBuilder.show() ;
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+        TextView tv_name = view.findViewById(R.id.tv_name);
+        tv_name.setText("王经理");
+        TextView tv_phone = view.findViewById(R.id.tv_phone);
+        tv_phone.setText("15968564856");
+        TextView tv_address = view.findViewById(R.id.tv_address);
+        tv_address.setText("洛阳市西宫区王城大道111号信息科技城379");
+        TextView tv_email = view.findViewById(R.id.tv_email);
+        tv_email.setText("236514682@qq.com");
+        ImageView iv_close = view.findViewById(R.id.iv_close);
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
     }

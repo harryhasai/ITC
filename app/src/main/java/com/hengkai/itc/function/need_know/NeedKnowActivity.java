@@ -1,6 +1,5 @@
 package com.hengkai.itc.function.need_know;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
